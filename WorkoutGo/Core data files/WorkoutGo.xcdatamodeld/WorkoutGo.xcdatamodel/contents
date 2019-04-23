@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.99" systemVersion="18E226" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Exercise" representedClassName=".Exercise" syncable="YES" codeGenerationType="category">
+        <attribute name="duration" optional="YES" attributeType="Integer 32" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rowNum" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="children" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Exercise" inverseName="parent" inverseEntity="Exercise" syncable="YES"/>
+        <relationship name="parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Exercise" inverseName="children" inverseEntity="Exercise" syncable="YES"/>
+        <relationship name="workout" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Workout" inverseName="exercises" inverseEntity="Workout" syncable="YES"/>
+    </entity>
+    <entity name="Workout" representedClassName=".Workout" syncable="YES" codeGenerationType="category">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rowNum" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="exercises" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Exercise" inverseName="workout" inverseEntity="Exercise" syncable="YES"/>
+        <relationship name="program" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WorkoutProgram" inverseName="workouts" inverseEntity="WorkoutProgram" syncable="YES"/>
+    </entity>
+    <entity name="WorkoutProgram" representedClassName=".WorkoutProgram" syncable="YES" codeGenerationType="category">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rowNum" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="workouts" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Workout" inverseName="program" inverseEntity="Workout" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Exercise" positionX="195.8515625" positionY="-30.328125" width="128" height="148"/>
+        <element name="Workout" positionX="-28.77734375" positionY="-53.59765625" width="128" height="103"/>
+        <element name="WorkoutProgram" positionX="-232.39453125" positionY="-16.96875" width="128" height="88"/>
+    </elements>
+</model>

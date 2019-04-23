@@ -8,22 +8,30 @@
 
 /* Begin PBXBuildFile section */
 		FF04FBB0226AB8A50061AD07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF04FBAF226AB8A50061AD07 /* AppDelegate.swift */; };
-		FF04FBB2226AB8A50061AD07 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF04FBB1226AB8A50061AD07 /* ViewController.swift */; };
 		FF04FBB5226AB8A50061AD07 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF04FBB3226AB8A50061AD07 /* Main.storyboard */; };
 		FF04FBB8226AB8A50061AD07 /* WorkoutGo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FF04FBB6226AB8A50061AD07 /* WorkoutGo.xcdatamodeld */; };
 		FF04FBBA226AB8A70061AD07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF04FBB9226AB8A70061AD07 /* Assets.xcassets */; };
 		FF04FBBD226AB8A70061AD07 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF04FBBB226AB8A70061AD07 /* LaunchScreen.storyboard */; };
+		FF04FBE6226BFA270061AD07 /* WorkoutProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF04FBE5226BFA270061AD07 /* WorkoutProgram.swift */; };
+		FF04FBE8226BFA310061AD07 /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF04FBE7226BFA310061AD07 /* Workout.swift */; };
+		FF04FBEA226BFA380061AD07 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF04FBE9226BFA380061AD07 /* Exercise.swift */; };
+		FF04FBF0226BFB1B0061AD07 /* WorkoutProgramTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF04FBEF226BFB1B0061AD07 /* WorkoutProgramTableViewController.swift */; };
+		FF04FBF2226C1BBF0061AD07 /* WorkoutProgramTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF04FBF1226C1BBF0061AD07 /* WorkoutProgramTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		FF04FBAC226AB8A50061AD07 /* WorkoutGo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkoutGo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF04FBAF226AB8A50061AD07 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FF04FBB1226AB8A50061AD07 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		FF04FBB4226AB8A50061AD07 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FF04FBB7226AB8A50061AD07 /* WorkoutGo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WorkoutGo.xcdatamodel; sourceTree = "<group>"; };
 		FF04FBB9226AB8A70061AD07 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FF04FBBC226AB8A70061AD07 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FF04FBBE226AB8A70061AD07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FF04FBE5226BFA270061AD07 /* WorkoutProgram.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutProgram.swift; sourceTree = "<group>"; };
+		FF04FBE7226BFA310061AD07 /* Workout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
+		FF04FBE9226BFA380061AD07 /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
+		FF04FBEF226BFB1B0061AD07 /* WorkoutProgramTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutProgramTableViewController.swift; sourceTree = "<group>"; };
+		FF04FBF1226C1BBF0061AD07 /* WorkoutProgramTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutProgramTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +64,43 @@
 		FF04FBAE226AB8A50061AD07 /* WorkoutGo */ = {
 			isa = PBXGroup;
 			children = (
-				FF04FBAF226AB8A50061AD07 /* AppDelegate.swift */,
-				FF04FBB1226AB8A50061AD07 /* ViewController.swift */,
 				FF04FBB3226AB8A50061AD07 /* Main.storyboard */,
-				FF04FBB9226AB8A70061AD07 /* Assets.xcassets */,
-				FF04FBBB226AB8A70061AD07 /* LaunchScreen.storyboard */,
+				FF04FBF3226C1BC80061AD07 /* WorkoutProgram TVC */,
+				FF04FBEC226BFAA50061AD07 /* Core data files */,
+				FF04FBEB226BFA8B0061AD07 /* Supporting files */,
 				FF04FBBE226AB8A70061AD07 /* Info.plist */,
-				FF04FBB6226AB8A50061AD07 /* WorkoutGo.xcdatamodeld */,
 			);
 			path = WorkoutGo;
+			sourceTree = "<group>";
+		};
+		FF04FBEB226BFA8B0061AD07 /* Supporting files */ = {
+			isa = PBXGroup;
+			children = (
+				FF04FBAF226AB8A50061AD07 /* AppDelegate.swift */,
+				FF04FBB9226AB8A70061AD07 /* Assets.xcassets */,
+				FF04FBBB226AB8A70061AD07 /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting files";
+			sourceTree = "<group>";
+		};
+		FF04FBEC226BFAA50061AD07 /* Core data files */ = {
+			isa = PBXGroup;
+			children = (
+				FF04FBE5226BFA270061AD07 /* WorkoutProgram.swift */,
+				FF04FBE7226BFA310061AD07 /* Workout.swift */,
+				FF04FBE9226BFA380061AD07 /* Exercise.swift */,
+				FF04FBB6226AB8A50061AD07 /* WorkoutGo.xcdatamodeld */,
+			);
+			path = "Core data files";
+			sourceTree = "<group>";
+		};
+		FF04FBF3226C1BC80061AD07 /* WorkoutProgram TVC */ = {
+			isa = PBXGroup;
+			children = (
+				FF04FBEF226BFB1B0061AD07 /* WorkoutProgramTableViewController.swift */,
+				FF04FBF1226C1BBF0061AD07 /* WorkoutProgramTableViewCell.swift */,
+			);
+			path = "WorkoutProgram TVC";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,9 +174,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FF04FBB2226AB8A50061AD07 /* ViewController.swift in Sources */,
 				FF04FBB8226AB8A50061AD07 /* WorkoutGo.xcdatamodeld in Sources */,
+				FF04FBE6226BFA270061AD07 /* WorkoutProgram.swift in Sources */,
+				FF04FBE8226BFA310061AD07 /* Workout.swift in Sources */,
 				FF04FBB0226AB8A50061AD07 /* AppDelegate.swift in Sources */,
+				FF04FBF2226C1BBF0061AD07 /* WorkoutProgramTableViewCell.swift in Sources */,
+				FF04FBF0226BFB1B0061AD07 /* WorkoutProgramTableViewController.swift in Sources */,
+				FF04FBEA226BFA380061AD07 /* Exercise.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

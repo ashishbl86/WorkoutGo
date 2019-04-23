@@ -1,24 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Izv-4d-bLQ">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Workout Program Table View Controller-->
+        <scene sceneID="hyF-T9-m6H">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                <tableViewController id="bEG-9r-rzf" customClass="WorkoutProgramTableViewController" customModule="WorkoutGo" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="O9Z-96-iP7">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="WorkoutProgram Cell" id="Q1r-Ol-OXm" customClass="WorkoutProgramTableViewCell" customModule="WorkoutGo" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Q1r-Ol-OXm" id="w6y-9V-RVo">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="H4a-Qz-RUF">
+                                            <rect key="frame" x="20" y="12" width="374" height="19.5"/>
+                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                        </textField>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="H4a-Qz-RUF" firstAttribute="top" secondItem="w6y-9V-RVo" secondAttribute="top" constant="12" id="Sbl-dm-Tfd"/>
+                                        <constraint firstAttribute="bottom" secondItem="H4a-Qz-RUF" secondAttribute="bottom" constant="12" id="cht-OM-hHO"/>
+                                        <constraint firstItem="H4a-Qz-RUF" firstAttribute="leading" secondItem="w6y-9V-RVo" secondAttribute="leading" constant="20" symbolic="YES" id="fJa-zg-eWr"/>
+                                        <constraint firstAttribute="trailing" secondItem="H4a-Qz-RUF" secondAttribute="trailing" constant="20" symbolic="YES" id="vSk-Uk-nsO"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="programNameTextField" destination="H4a-Qz-RUF" id="MCO-jq-PvJ"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="bEG-9r-rzf" id="wJk-BK-Rhp"/>
+                            <outlet property="delegate" destination="bEG-9r-rzf" id="9yJ-pd-X5A"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="cAj-AC-xUj">
+                        <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="Sqh-ov-Lr3">
+                            <connections>
+                                <action selector="reloadData:" destination="bEG-9r-rzf" id="qCm-kI-tMM"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="8Tw-Wb-CNU">
+                            <connections>
+                                <action selector="addWorkoutProgram:" destination="bEG-9r-rzf" id="znc-gl-vVw"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2kH-3G-kvD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-601" y="-16"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="wNC-Pq-6fr">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Izv-4d-bLQ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="dYL-gm-10e">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="bEG-9r-rzf" kind="relationship" relationship="rootViewController" id="hTs-Fh-gY2"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BaJ-8I-zyL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1491.304347826087" y="-16.071428571428569"/>
         </scene>
     </scenes>
 </document>
