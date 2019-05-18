@@ -10,11 +10,6 @@ import UIKit
 
 class WorkoutProgramTableViewController: UITableViewController, WorkoutProgramTableViewCellDelegate {
     
-    @IBAction func reloadData(_ sender: UIBarButtonItem) {
-        workoutPrograms = try! WorkoutProgram.getAllWorkoutProgramNames()
-        tableView.reloadData()
-    }
-    
     private var workoutPrograms = [String]()
     
     override func viewDidLoad() {
@@ -24,7 +19,7 @@ class WorkoutProgramTableViewController: UITableViewController, WorkoutProgramTa
         workoutPrograms = try! WorkoutProgram.getAllWorkoutProgramNames()
     }
     
-    // MARK: Data source methods
+    // MARK: - Data source methods
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return workoutPrograms.count
@@ -40,7 +35,7 @@ class WorkoutProgramTableViewController: UITableViewController, WorkoutProgramTa
         return cell
     }
     
-    // MARK: Addition of data
+    // MARK: - Addition of data
     
     @IBAction func addWorkoutProgram(_ sender: UIBarButtonItem) {
         let newWorkoutProgram = "Untitled".madeUnique(withRespectTo: workoutPrograms)
@@ -50,7 +45,7 @@ class WorkoutProgramTableViewController: UITableViewController, WorkoutProgramTa
         tableView.insertRows(at: [IndexPath(row: indexOfNewWorkoutProgram!, section: 0)], with: .automatic)
     }
     
-    // MARK: Editing of table
+    // MARK: - Editing of table
 
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return tableView.isEditing
@@ -76,7 +71,7 @@ class WorkoutProgramTableViewController: UITableViewController, WorkoutProgramTa
         workoutPrograms.insert(movedWorkoutProgram, at: to.row)
     }
     
-    // MARK: Renaming of data
+    // MARK: - Renaming of data
     
     func didUpdateWorkoutProgramName(from oldName: String, to newName: String, inCell cell: WorkoutProgramTableViewCell) {
         if workoutPrograms.contains(newName) == false {
@@ -99,17 +94,19 @@ class WorkoutProgramTableViewController: UITableViewController, WorkoutProgramTa
         present(alert, animated: true)
     }
 
-    /*
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "Open Workout Program" {
+            if let workoutTVC = segue.destination as? WorkoutTableViewController, let selectedCell = sender as? WorkoutProgramTableViewCell {
+                assert(selectedCell.programNameTextField.text != nil, "Workout program is nil")
+                workoutTVC.workoutProgram = selectedCell.programNameTextField.text
+            }
+        }
     }
-    */
-
 }
+
+// MARK: -
+// MARK: -
 
 extension String {
     func madeUnique(withRespectTo otherStrings: [String]) -> String {

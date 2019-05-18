@@ -17,6 +17,13 @@
 		FF04FBEA226BFA380061AD07 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF04FBE9226BFA380061AD07 /* Exercise.swift */; };
 		FF04FBF0226BFB1B0061AD07 /* WorkoutProgramTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF04FBEF226BFB1B0061AD07 /* WorkoutProgramTableViewController.swift */; };
 		FF04FBF2226C1BBF0061AD07 /* WorkoutProgramTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF04FBF1226C1BBF0061AD07 /* WorkoutProgramTableViewCell.swift */; };
+		FF7F01CE228E4F1A001ABDAE /* ExerciseContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7F01CD228E4F1A001ABDAE /* ExerciseContainerView.swift */; };
+		FF9C430A22851B900058A6E6 /* RoundedButtton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9C430922851B900058A6E6 /* RoundedButtton.swift */; };
+		FFC13C48226FEB5600F396F1 /* WorkoutTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC13C47226FEB5600F396F1 /* WorkoutTableViewController.swift */; };
+		FFC13C4A226FEB7200F396F1 /* WorkoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC13C49226FEB7200F396F1 /* WorkoutTableViewCell.swift */; };
+		FFC13C4D2271579D00F396F1 /* ExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC13C4C2271579D00F396F1 /* ExerciseViewController.swift */; };
+		FFC13C4F2271667E00F396F1 /* ExerciseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC13C4E2271667E00F396F1 /* ExerciseTableViewCell.swift */; };
+		FFC13C522275463C00F396F1 /* RunningWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC13C512275463C00F396F1 /* RunningWorkoutViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +39,13 @@
 		FF04FBE9226BFA380061AD07 /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		FF04FBEF226BFB1B0061AD07 /* WorkoutProgramTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutProgramTableViewController.swift; sourceTree = "<group>"; };
 		FF04FBF1226C1BBF0061AD07 /* WorkoutProgramTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutProgramTableViewCell.swift; sourceTree = "<group>"; };
+		FF7F01CD228E4F1A001ABDAE /* ExerciseContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseContainerView.swift; sourceTree = "<group>"; };
+		FF9C430922851B900058A6E6 /* RoundedButtton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButtton.swift; sourceTree = "<group>"; };
+		FFC13C47226FEB5600F396F1 /* WorkoutTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTableViewController.swift; sourceTree = "<group>"; };
+		FFC13C49226FEB7200F396F1 /* WorkoutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTableViewCell.swift; sourceTree = "<group>"; };
+		FFC13C4C2271579D00F396F1 /* ExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseViewController.swift; sourceTree = "<group>"; };
+		FFC13C4E2271667E00F396F1 /* ExerciseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseTableViewCell.swift; sourceTree = "<group>"; };
+		FFC13C512275463C00F396F1 /* RunningWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningWorkoutViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,7 +79,11 @@
 			isa = PBXGroup;
 			children = (
 				FF04FBB3226AB8A50061AD07 /* Main.storyboard */,
+				FF9C430922851B900058A6E6 /* RoundedButtton.swift */,
 				FF04FBF3226C1BC80061AD07 /* WorkoutProgram TVC */,
+				FFC13C4B226FEB7900F396F1 /* Workout TVC */,
+				FFC13C50227166D400F396F1 /* Exercise VC */,
+				FFC13C542275468B00F396F1 /* Running Workout VC */,
 				FF04FBEC226BFAA50061AD07 /* Core data files */,
 				FF04FBEB226BFA8B0061AD07 /* Supporting files */,
 				FF04FBBE226AB8A70061AD07 /* Info.plist */,
@@ -101,6 +119,33 @@
 				FF04FBF1226C1BBF0061AD07 /* WorkoutProgramTableViewCell.swift */,
 			);
 			path = "WorkoutProgram TVC";
+			sourceTree = "<group>";
+		};
+		FFC13C4B226FEB7900F396F1 /* Workout TVC */ = {
+			isa = PBXGroup;
+			children = (
+				FFC13C47226FEB5600F396F1 /* WorkoutTableViewController.swift */,
+				FFC13C49226FEB7200F396F1 /* WorkoutTableViewCell.swift */,
+			);
+			path = "Workout TVC";
+			sourceTree = "<group>";
+		};
+		FFC13C50227166D400F396F1 /* Exercise VC */ = {
+			isa = PBXGroup;
+			children = (
+				FFC13C4C2271579D00F396F1 /* ExerciseViewController.swift */,
+				FFC13C4E2271667E00F396F1 /* ExerciseTableViewCell.swift */,
+			);
+			path = "Exercise VC";
+			sourceTree = "<group>";
+		};
+		FFC13C542275468B00F396F1 /* Running Workout VC */ = {
+			isa = PBXGroup;
+			children = (
+				FF7F01CD228E4F1A001ABDAE /* ExerciseContainerView.swift */,
+				FFC13C512275463C00F396F1 /* RunningWorkoutViewController.swift */,
+			);
+			path = "Running Workout VC";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -176,10 +221,17 @@
 			files = (
 				FF04FBB8226AB8A50061AD07 /* WorkoutGo.xcdatamodeld in Sources */,
 				FF04FBE6226BFA270061AD07 /* WorkoutProgram.swift in Sources */,
+				FFC13C4F2271667E00F396F1 /* ExerciseTableViewCell.swift in Sources */,
+				FFC13C48226FEB5600F396F1 /* WorkoutTableViewController.swift in Sources */,
 				FF04FBE8226BFA310061AD07 /* Workout.swift in Sources */,
+				FF9C430A22851B900058A6E6 /* RoundedButtton.swift in Sources */,
 				FF04FBB0226AB8A50061AD07 /* AppDelegate.swift in Sources */,
 				FF04FBF2226C1BBF0061AD07 /* WorkoutProgramTableViewCell.swift in Sources */,
+				FFC13C4D2271579D00F396F1 /* ExerciseViewController.swift in Sources */,
+				FFC13C522275463C00F396F1 /* RunningWorkoutViewController.swift in Sources */,
 				FF04FBF0226BFB1B0061AD07 /* WorkoutProgramTableViewController.swift in Sources */,
+				FFC13C4A226FEB7200F396F1 /* WorkoutTableViewCell.swift in Sources */,
+				FF7F01CE228E4F1A001ABDAE /* ExerciseContainerView.swift in Sources */,
 				FF04FBEA226BFA380061AD07 /* Exercise.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

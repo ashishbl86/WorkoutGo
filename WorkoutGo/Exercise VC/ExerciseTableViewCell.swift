@@ -1,42 +1,42 @@
 //
-//  WorkoutProgramTableViewCell.swift
+//  ExerciseTableViewCell.swift
 //  WorkoutGo
 //
-//  Created by Ashish Bansal on 21/04/19.
+//  Created by Ashish Bansal on 25/04/19.
 //  Copyright © 2019 Ashish Bansal. All rights reserved.
 //
 
 import UIKit
 
-protocol WorkoutProgramTableViewCellDelegate: AnyObject {
-    func didUpdateWorkoutProgramName(from: String, to: String, inCell: WorkoutProgramTableViewCell)
+protocol ExerciseTableViewCellDelegate: AnyObject {
+    func didUpdateExerciseName(from: String, to: String, inCell: ExerciseTableViewCell)
 }
 
-class WorkoutProgramTableViewCell: UITableViewCell, UITextFieldDelegate {
+class ExerciseTableViewCell: UITableViewCell, UITextFieldDelegate {
     
-    @IBOutlet weak var programNameTextField: UITextField! {
+    @IBOutlet weak var exerciseNameTextField: UITextField! {
         didSet {
-            programNameTextField.delegate = self
+            exerciseNameTextField.delegate = self
         }
     }
     
-    weak var delegate: WorkoutProgramTableViewCellDelegate!
+    @IBOutlet weak var durationLabel: UILabel!
     
-    var name: String {
-        get {
-            return programNameTextField.text!
-        }
-        set {
-            programNameTextField.text = newValue
+    weak var delegate: ExerciseTableViewCellDelegate!
+    
+    var exerciseInfo: ExerciseInfo! {
+        didSet {
+            exerciseNameTextField.text = exerciseInfo.name
+            durationLabel.text = DateComponentsFormatter.common.string(from: Double(exerciseInfo.duration))
         }
     }
-    
+
     private var previousText = ""
     
     func receiveNameFromUser() {
-        previousText = programNameTextField.text!
-        programNameTextField.isEnabled = true
-        programNameTextField.becomeFirstResponder()
+        previousText = exerciseNameTextField.text!
+        exerciseNameTextField.isEnabled = true
+        exerciseNameTextField.becomeFirstResponder()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -45,14 +45,14 @@ class WorkoutProgramTableViewCell: UITableViewCell, UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        textField.isEnabled = false 
-        let newText = programNameTextField.text!
+        textField.isEnabled = false
+        let newText = exerciseNameTextField.text!
         if newText.isEmpty {
-            programNameTextField.text = previousText
+            exerciseNameTextField.text = previousText
         }
         
         if previousText != newText {
-            delegate.didUpdateWorkoutProgramName(from: previousText, to: newText, inCell: self)
+            delegate.didUpdateExerciseName(from: previousText, to: newText, inCell: self)
         }
     }
     
@@ -77,4 +77,5 @@ class WorkoutProgramTableViewCell: UITableViewCell, UITextFieldDelegate {
         doubleTapGesture.numberOfTapsRequired = 2
         addGestureRecognizer(doubleTapGesture)
     }
+
 }

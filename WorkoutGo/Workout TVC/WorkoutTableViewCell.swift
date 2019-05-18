@@ -1,42 +1,42 @@
 //
-//  WorkoutProgramTableViewCell.swift
+//  WorkoutTableViewCell.swift
 //  WorkoutGo
 //
-//  Created by Ashish Bansal on 21/04/19.
+//  Created by Ashish Bansal on 24/04/19.
 //  Copyright © 2019 Ashish Bansal. All rights reserved.
 //
 
 import UIKit
 
-protocol WorkoutProgramTableViewCellDelegate: AnyObject {
-    func didUpdateWorkoutProgramName(from: String, to: String, inCell: WorkoutProgramTableViewCell)
+protocol WorkoutTableViewCellDelegate: AnyObject {
+    func didUpdateWorkoutName(from: String, to: String, inCell: WorkoutTableViewCell)
 }
 
-class WorkoutProgramTableViewCell: UITableViewCell, UITextFieldDelegate {
+class WorkoutTableViewCell: UITableViewCell, UITextFieldDelegate {
     
-    @IBOutlet weak var programNameTextField: UITextField! {
+    @IBOutlet weak var workoutNameTextField: UITextField! {
         didSet {
-            programNameTextField.delegate = self
+            workoutNameTextField.delegate = self
         }
     }
     
-    weak var delegate: WorkoutProgramTableViewCellDelegate!
+    weak var delegate: WorkoutTableViewCellDelegate!
     
     var name: String {
         get {
-            return programNameTextField.text!
+            return workoutNameTextField.text!
         }
         set {
-            programNameTextField.text = newValue
+            workoutNameTextField.text = newValue
         }
     }
     
     private var previousText = ""
     
     func receiveNameFromUser() {
-        previousText = programNameTextField.text!
-        programNameTextField.isEnabled = true
-        programNameTextField.becomeFirstResponder()
+        previousText = workoutNameTextField.text!
+        workoutNameTextField.isEnabled = true
+        workoutNameTextField.becomeFirstResponder()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -45,14 +45,14 @@ class WorkoutProgramTableViewCell: UITableViewCell, UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        textField.isEnabled = false 
-        let newText = programNameTextField.text!
+        textField.isEnabled = false
+        let newText = workoutNameTextField.text!
         if newText.isEmpty {
-            programNameTextField.text = previousText
+            workoutNameTextField.text = previousText
         }
         
         if previousText != newText {
-            delegate.didUpdateWorkoutProgramName(from: previousText, to: newText, inCell: self)
+            delegate.didUpdateWorkoutName(from: previousText, to: newText, inCell: self)
         }
     }
     

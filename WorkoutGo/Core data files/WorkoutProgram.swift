@@ -36,7 +36,7 @@ class WorkoutProgram: NSManagedObject {
         workoutProgramForUpdate!.name = newName
     }
     
-    private static func getWorkoutProgram(forName name: String) throws -> WorkoutProgram? {
+    static func getWorkoutProgram(forName name: String) throws -> WorkoutProgram? {
         let fetchRequest: NSFetchRequest<WorkoutProgram> = WorkoutProgram.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "%K == %@", #keyPath(WorkoutProgram.name), name)
         let workoutPrograms = try AppDelegate.persistentContainer.viewContext.fetch(fetchRequest)
