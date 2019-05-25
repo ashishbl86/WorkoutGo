@@ -12,23 +12,52 @@ import UIKit
 class RoundedButtton: UIButton {
     
     @IBInspectable
-    let cornerRadius: CGFloat = 10
+    let cornerRadius: CGFloat = 0
+    
+    let blackGradientLayer = CAGradientLayer()
+    let whiteGradientLayer = CAGradientLayer()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
+        print("init frame: Corner radius value: \(cornerRadius). Layer corner radius: \(layer.cornerRadius)")
     }
     
     required init?(coder aDecoder: NSCoder) {
+        print("Init from coder begin")
         super.init(coder: aDecoder)
         setup()
+        print("init coder end: Corner radius value: \(cornerRadius). Layer corner radius: \(layer.cornerRadius)")
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        print("AwakefromNib: Corner radius value: \(cornerRadius). Layer corner radius: \(layer.cornerRadius)")
+    }
+    
+    override func layoutSubviews() {
+        print("sublayers count \(layer.sublayers?.count)")
+        layer.sublayers?.forEach({ layer in
+            print("Type of layer: \(type(of: layer))")
+        })
+        print("Layoutsubviews: Corner radius value: \(cornerRadius). Layer corner radius: \(layer.cornerRadius)")
+        super.layoutSubviews()
+        blackGradientLayer.frame = bounds
+        whiteGradientLayer.frame = bounds
+        blackGradientLayer.cornerRadius = layer.cornerRadius
+        whiteGradientLayer.cornerRadius = layer.cornerRadius
     }
     
     private func setup() {
         layer.cornerRadius = cornerRadius
-        layer.shadowRadius = 5
-        layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOffset = CGSize(width: 3, height: 3)
-        layer.shadowOpacity = 0.4
+        print("Setup: Corner radius value: \(cornerRadius). Layer corner radius: \(layer.cornerRadius)")
+
+        blackGradientLayer.locations = [0.0, 1.0]
+        blackGradientLayer.colors = [UIColor(red: 0, green: 0, blue: 0, alpha: 0).cgColor, UIColor(red: 0, green: 0, blue: 0, alpha: 0.6).cgColor]
+        layer.addSublayer(blackGradientLayer)
+        
+        whiteGradientLayer.locations = [0.0, 0.5, 0.5]
+        whiteGradientLayer.colors = [UIColor(red: 1, green: 1, blue: 1, alpha: 0.35).cgColor, UIColor(red: 1, green: 1, blue: 1, alpha: 0.06).cgColor, UIColor(red: 0, green: 0, blue: 0, alpha: 0).cgColor]
+        layer.addSublayer(whiteGradientLayer)
     }
 }

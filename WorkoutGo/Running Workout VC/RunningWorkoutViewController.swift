@@ -44,6 +44,7 @@ class RunningWorkoutViewController: UIViewController, ExerciseContainerViewLayou
         createShadow(on: currentExerciseView)
         createShadow(on: nextExerciseView)        
         createControlViewShadow()
+        view.backgroundColor = UIColor(patternImage: UIImage(named: "BlackPolygon")!)
     }
     
     private func createControlViewShadow() {
