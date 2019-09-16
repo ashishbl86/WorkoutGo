@@ -46,7 +46,8 @@ class WorkoutProgramTableViewController: UITableViewController, WorkoutProgramTa
     }
     
     // MARK: - Editing of table
-
+    
+    //This is to disallow swipe to delete generally. Editing and deleting is to be only allowed when table is in editing mode
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return tableView.isEditing
     }
@@ -58,17 +59,17 @@ class WorkoutProgramTableViewController: UITableViewController, WorkoutProgramTa
         }
     }
     
+    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
+        let movedWorkoutProgram = workoutPrograms.remove(at: fromIndexPath.row)
+        workoutPrograms.insert(movedWorkoutProgram, at: to.row)
+    }
+    
     override func setEditing(_ editing: Bool, animated: Bool) {
         if editing == false, isEditing == true //This means that editing went from true to false i.e. editing ended
         {
             try! WorkoutProgram.synchronize(withData: workoutPrograms)
         }
         super.setEditing(editing, animated: animated)
-    }
-
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-        let movedWorkoutProgram = workoutPrograms.remove(at: fromIndexPath.row)
-        workoutPrograms.insert(movedWorkoutProgram, at: to.row)
     }
     
     // MARK: - Renaming of data

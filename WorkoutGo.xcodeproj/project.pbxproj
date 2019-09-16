@@ -142,8 +142,8 @@
 		FFC13C542275468B00F396F1 /* Running Workout VC */ = {
 			isa = PBXGroup;
 			children = (
-				FF7F01CD228E4F1A001ABDAE /* ExerciseContainerView.swift */,
 				FFC13C512275463C00F396F1 /* RunningWorkoutViewController.swift */,
+				FF7F01CD228E4F1A001ABDAE /* ExerciseContainerView.swift */,
 			);
 			path = "Running Workout VC";
 			sourceTree = "<group>";

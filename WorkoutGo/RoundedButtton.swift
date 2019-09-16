@@ -20,27 +20,14 @@ class RoundedButtton: UIButton {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
-        print("init frame: Corner radius value: \(cornerRadius). Layer corner radius: \(layer.cornerRadius)")
     }
     
     required init?(coder aDecoder: NSCoder) {
-        print("Init from coder begin")
         super.init(coder: aDecoder)
         setup()
-        print("init coder end: Corner radius value: \(cornerRadius). Layer corner radius: \(layer.cornerRadius)")
-    }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        print("AwakefromNib: Corner radius value: \(cornerRadius). Layer corner radius: \(layer.cornerRadius)")
     }
     
     override func layoutSubviews() {
-        print("sublayers count \(layer.sublayers?.count)")
-        layer.sublayers?.forEach({ layer in
-            print("Type of layer: \(type(of: layer))")
-        })
-        print("Layoutsubviews: Corner radius value: \(cornerRadius). Layer corner radius: \(layer.cornerRadius)")
         super.layoutSubviews()
         blackGradientLayer.frame = bounds
         whiteGradientLayer.frame = bounds
@@ -50,7 +37,6 @@ class RoundedButtton: UIButton {
     
     private func setup() {
         layer.cornerRadius = cornerRadius
-        print("Setup: Corner radius value: \(cornerRadius). Layer corner radius: \(layer.cornerRadius)")
 
         blackGradientLayer.locations = [0.0, 1.0]
         blackGradientLayer.colors = [UIColor(red: 0, green: 0, blue: 0, alpha: 0).cgColor, UIColor(red: 0, green: 0, blue: 0, alpha: 0.6).cgColor]
