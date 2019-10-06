@@ -27,7 +27,7 @@ class ExerciseTableViewCell: UITableViewCell, UITextFieldDelegate {
     var exerciseInfo: ExerciseInfo! {
         didSet {
             exerciseNameTextField.text = exerciseInfo.name
-            durationLabel.text = DateComponentsFormatter.common.string(from: Double(exerciseInfo.duration))
+            durationLabel.text = Globalfunc_durationFormatter(seconds: exerciseInfo.duration)
         }
     }
 
