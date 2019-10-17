@@ -166,7 +166,7 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cBh-sj-OsE" customClass="RoundedButtton" customModule="WorkoutGo" customModuleProvider="target">
                                         <rect key="frame" x="20" y="38" width="374" height="33"/>
-                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                         <state key="normal" title="Start Workout">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -227,77 +227,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g7f-Ie-aC2" customClass="ExerciseContainerView" customModule="WorkoutGo" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="88" width="414" height="313.5"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="403"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DQD-jU-SHr">
-                                        <rect key="frame" x="125" y="20" width="373" height="273.5"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="PreviousNext" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zn3-J9-QTH">
-                                                <rect key="frame" x="20" y="20" width="332.5" height="36"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Duration" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="34Z-9I-lSx">
-                                                <rect key="frame" x="20" y="64" width="332.5" height="179.5"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="WOO-gs-Ydf">
-                                                <rect key="frame" x="20" y="251.5" width="332.5" height="2"/>
-                                            </progressView>
-                                        </subviews>
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DQD-jU-SHr" customClass="ExerciseCardViewContainer" customModule="WorkoutGo" customModuleProvider="target">
+                                        <rect key="frame" x="125" y="20" width="373" height="363"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstItem="zn3-J9-QTH" firstAttribute="top" secondItem="DQD-jU-SHr" secondAttribute="top" constant="20" symbolic="YES" id="AlA-wj-0rr"/>
-                                            <constraint firstItem="WOO-gs-Ydf" firstAttribute="leading" secondItem="DQD-jU-SHr" secondAttribute="leading" constant="20" symbolic="YES" id="EU5-Ku-a3E"/>
-                                            <constraint firstAttribute="trailing" secondItem="34Z-9I-lSx" secondAttribute="trailing" constant="20" symbolic="YES" id="Jn2-3B-Eia"/>
-                                            <constraint firstAttribute="trailing" secondItem="WOO-gs-Ydf" secondAttribute="trailing" constant="20" symbolic="YES" id="VBa-E2-uyv"/>
-                                            <constraint firstItem="zn3-J9-QTH" firstAttribute="leading" secondItem="DQD-jU-SHr" secondAttribute="leading" constant="20" symbolic="YES" id="ccD-0c-pFk"/>
-                                            <constraint firstItem="34Z-9I-lSx" firstAttribute="leading" secondItem="DQD-jU-SHr" secondAttribute="leading" constant="20" symbolic="YES" id="kWq-d3-wF1"/>
-                                            <constraint firstAttribute="trailing" secondItem="zn3-J9-QTH" secondAttribute="trailing" constant="20" symbolic="YES" id="nFt-FE-viR"/>
-                                            <constraint firstAttribute="bottom" secondItem="WOO-gs-Ydf" secondAttribute="bottom" constant="20" symbolic="YES" id="qbz-xb-8mX"/>
-                                            <constraint firstItem="WOO-gs-Ydf" firstAttribute="top" secondItem="34Z-9I-lSx" secondAttribute="bottom" constant="8" symbolic="YES" id="tob-Os-BlV"/>
-                                            <constraint firstItem="34Z-9I-lSx" firstAttribute="top" secondItem="zn3-J9-QTH" secondAttribute="bottom" constant="8" symbolic="YES" id="tqG-d1-yn0"/>
-                                        </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9LF-W0-l87">
-                                        <rect key="frame" x="20" y="20" width="373" height="273.5"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Current" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fwr-dk-2Td">
-                                                <rect key="frame" x="20" y="20" width="332.5" height="36"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Duration" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ffH-G0-K4L">
-                                                <rect key="frame" x="20" y="64" width="332.5" height="179.5"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="e5y-Pe-sFC">
-                                                <rect key="frame" x="20" y="251.5" width="332.5" height="2"/>
-                                            </progressView>
-                                        </subviews>
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9LF-W0-l87" customClass="ExerciseCardViewContainer" customModule="WorkoutGo" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="20" width="373" height="363"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstItem="Fwr-dk-2Td" firstAttribute="leading" secondItem="9LF-W0-l87" secondAttribute="leading" constant="20" symbolic="YES" id="2kM-HL-zQM"/>
-                                            <constraint firstAttribute="trailing" secondItem="e5y-Pe-sFC" secondAttribute="trailing" constant="20" symbolic="YES" id="5OL-Qp-9i9"/>
-                                            <constraint firstItem="e5y-Pe-sFC" firstAttribute="leading" secondItem="9LF-W0-l87" secondAttribute="leading" constant="20" symbolic="YES" id="5iA-Dp-Xsy"/>
-                                            <constraint firstAttribute="trailing" secondItem="Fwr-dk-2Td" secondAttribute="trailing" constant="20" symbolic="YES" id="5iX-m9-fQO"/>
-                                            <constraint firstItem="e5y-Pe-sFC" firstAttribute="top" secondItem="ffH-G0-K4L" secondAttribute="bottom" constant="8" symbolic="YES" id="6vf-mH-opa"/>
-                                            <constraint firstItem="ffH-G0-K4L" firstAttribute="leading" secondItem="9LF-W0-l87" secondAttribute="leading" constant="20" symbolic="YES" id="MSM-75-MVT"/>
-                                            <constraint firstItem="Fwr-dk-2Td" firstAttribute="top" secondItem="9LF-W0-l87" secondAttribute="top" constant="20" symbolic="YES" id="b5e-te-X48"/>
-                                            <constraint firstAttribute="bottom" secondItem="e5y-Pe-sFC" secondAttribute="bottom" constant="20" symbolic="YES" id="ePT-VL-1kP"/>
-                                            <constraint firstItem="ffH-G0-K4L" firstAttribute="top" secondItem="Fwr-dk-2Td" secondAttribute="bottom" constant="8" symbolic="YES" id="xEg-Ef-5b1"/>
-                                            <constraint firstAttribute="trailing" secondItem="ffH-G0-K4L" secondAttribute="trailing" constant="20" symbolic="YES" id="xR2-Ec-iaf"/>
-                                        </constraints>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -311,15 +249,15 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X7J-a4-LNm">
-                                <rect key="frame" x="0.0" y="401.5" width="414" height="64.5"/>
+                                <rect key="frame" x="0.0" y="491" width="414" height="64.5"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Time Remaining:" textAlignment="natural" lineBreakMode="tailTruncation" minimumFontSize="15" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sQt-zY-hKR">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Time Remaining:" textAlignment="natural" lineBreakMode="tailTruncation" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sQt-zY-hKR">
                                         <rect key="frame" x="20" y="8" width="215.5" height="48.5"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="30:00" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" minimumFontSize="30" translatesAutoresizingMaskIntoConstraints="NO" id="3o4-N1-yrb">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="30:00" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="3o4-N1-yrb">
                                         <rect key="frame" x="288.5" y="8" width="105.5" height="48.5"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-BoldItalic" family="Helvetica Neue" pointSize="42"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -338,16 +276,16 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dml-cl-5Pf">
-                                <rect key="frame" x="0.0" y="466" width="414" height="430"/>
+                                <rect key="frame" x="0.0" y="555.5" width="414" height="340.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="UiX-9w-4iW">
-                                        <rect key="frame" x="20" y="20" width="374" height="378"/>
+                                        <rect key="frame" x="20" y="20" width="374" height="288.5"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WzY-74-zDJ" customClass="RoundedButtton" customModule="WorkoutGo" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="374" height="79.5"/>
-                                                <color key="backgroundColor" red="0.0" green="0.79305027367808212" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                                <state key="normal" title="Play/Pause">
+                                            <button opaque="NO" contentMode="redraw" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WzY-74-zDJ" customClass="RoundedButtton" customModule="WorkoutGo" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="83"/>
+                                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" image="Icons/play">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
@@ -359,51 +297,13 @@
                                                     <action selector="playPauseExercise:" destination="JxA-Yw-5UY" eventType="touchUpInside" id="Z8z-Cn-bpg"/>
                                                 </connections>
                                             </button>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="UJD-sg-aZC">
-                                                <rect key="frame" x="0.0" y="99.5" width="374" height="79.5"/>
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UOj-Ld-oan" customClass="RoundedButtton" customModule="WorkoutGo" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="183" height="79.5"/>
-                                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                                        <state key="normal" title="Back x seconds">
-                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </state>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                <real key="value" value="12"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
-                                                        <connections>
-                                                            <action selector="backXSecs:" destination="JxA-Yw-5UY" eventType="touchUpInside" id="LTx-xH-DQB"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VNS-je-PIP" customClass="RoundedButtton" customModule="WorkoutGo" customModuleProvider="target">
-                                                        <rect key="frame" x="191" y="0.0" width="183" height="79.5"/>
-                                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                                        <state key="normal" title="Fwd x seconds">
-                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </state>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                <real key="value" value="12"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
-                                                        <connections>
-                                                            <action selector="fwdXSecs:" destination="JxA-Yw-5UY" eventType="touchUpInside" id="o5h-lI-2td"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
-                                            </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="CHL-ez-ytH">
-                                                <rect key="frame" x="0.0" y="199" width="374" height="79.5"/>
+                                                <rect key="frame" x="0.0" y="103" width="374" height="82.5"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yDl-is-hH0" customClass="RoundedButtton" customModule="WorkoutGo" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="183" height="79.5"/>
-                                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                                        <state key="normal" title="Prev">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yDl-is-hH0" customClass="RoundedButtton" customModule="WorkoutGo" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="183" height="82.5"/>
+                                                        <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <state key="normal" image="Icons/back">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <userDefinedRuntimeAttributes>
@@ -415,11 +315,10 @@
                                                             <action selector="jumpToPreviousExercise:" destination="JxA-Yw-5UY" eventType="touchUpInside" id="tc7-Ic-E6L"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j4F-9b-ih0" customClass="RoundedButtton" customModule="WorkoutGo" customModuleProvider="target">
-                                                        <rect key="frame" x="191" y="0.0" width="183" height="79.5"/>
-                                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                                        <state key="normal" title="Next">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j4F-9b-ih0" customClass="RoundedButtton" customModule="WorkoutGo" customModuleProvider="target">
+                                                        <rect key="frame" x="191" y="0.0" width="183" height="82.5"/>
+                                                        <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <state key="normal" image="Icons/next">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <userDefinedRuntimeAttributes>
@@ -433,19 +332,41 @@
                                                     </button>
                                                 </subviews>
                                             </stackView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ixM-Ac-Fbb" customClass="RoundedButtton" customModule="WorkoutGo" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="298.5" width="374" height="79.5"/>
-                                                <color key="backgroundColor" red="0.94999999999999996" green="0.141674846435" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                                <state key="normal" title="Stop">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="12"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </button>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="UJD-sg-aZC">
+                                                <rect key="frame" x="0.0" y="205.5" width="374" height="83"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UOj-Ld-oan" customClass="RoundedButtton" customModule="WorkoutGo" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="183" height="83"/>
+                                                        <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <state key="normal" image="Icons/rewind">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="12"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="backXSecs:" destination="JxA-Yw-5UY" eventType="touchUpInside" id="LTx-xH-DQB"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VNS-je-PIP" customClass="RoundedButtton" customModule="WorkoutGo" customModuleProvider="target">
+                                                        <rect key="frame" x="191" y="0.0" width="183" height="83"/>
+                                                        <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <state key="normal" image="Icons/fast-forward">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="12"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="fwdXSecs:" destination="JxA-Yw-5UY" eventType="touchUpInside" id="o5h-lI-2td"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
                                         </subviews>
                                     </stackView>
                                 </subviews>
@@ -471,22 +392,21 @@
                             <constraint firstAttribute="bottom" secondItem="dml-cl-5Pf" secondAttribute="bottom" id="egq-8E-Qkz"/>
                             <constraint firstItem="X7J-a4-LNm" firstAttribute="trailing" secondItem="lUb-oi-P8X" secondAttribute="trailing" id="gtf-PI-pfs"/>
                             <constraint firstItem="g7f-Ie-aC2" firstAttribute="top" secondItem="lUb-oi-P8X" secondAttribute="top" id="iGJ-q9-JMe"/>
-                            <constraint firstItem="g7f-Ie-aC2" firstAttribute="height" secondItem="xzy-xn-eUa" secondAttribute="height" multiplier="0.35" id="yZH-6U-YSM"/>
+                            <constraint firstItem="g7f-Ie-aC2" firstAttribute="height" secondItem="xzy-xn-eUa" secondAttribute="height" multiplier="0.45" id="yZH-6U-YSM"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lUb-oi-P8X"/>
                     </view>
                     <navigationItem key="navigationItem" id="dhT-J2-XSr"/>
                     <connections>
                         <outlet property="controlsContainerView" destination="dml-cl-5Pf" id="zvq-Ae-0Nl"/>
-                        <outlet property="currentExerciseDurationLabel" destination="ffH-G0-K4L" id="h3q-hc-i4W"/>
-                        <outlet property="currentExerciseNameLabel" destination="Fwr-dk-2Td" id="eeC-SY-CNA"/>
-                        <outlet property="currentExerciseProgressView" destination="e5y-Pe-sFC" id="Mxh-bX-vIt"/>
-                        <outlet property="currentExerciseView" destination="9LF-W0-l87" id="mjX-KH-pPW"/>
+                        <outlet property="currentExerciseView" destination="9LF-W0-l87" id="OSg-VF-4bk"/>
                         <outlet property="exercisesContainerView" destination="g7f-Ie-aC2" id="s9w-sI-Eyf"/>
-                        <outlet property="previousAndNextExerciseView" destination="DQD-jU-SHr" id="FDb-18-Xtn"/>
-                        <outlet property="previousNextExerciseDurationLabel" destination="34Z-9I-lSx" id="jtf-Ur-qwG"/>
-                        <outlet property="previousNextExerciseNameLabel" destination="zn3-J9-QTH" id="Oz2-lI-rZs"/>
-                        <outlet property="previousNextExerciseProgressView" destination="WOO-gs-Ydf" id="eDL-r0-ikg"/>
+                        <outlet property="fastForwardButton" destination="VNS-je-PIP" id="Uy7-HB-EBC"/>
+                        <outlet property="nextButton" destination="j4F-9b-ih0" id="nTW-dj-TJU"/>
+                        <outlet property="playPauseButton" destination="WzY-74-zDJ" id="usV-zR-bHf"/>
+                        <outlet property="previousAndNextExerciseView" destination="DQD-jU-SHr" id="cvL-Jb-eC5"/>
+                        <outlet property="previousButton" destination="yDl-is-hH0" id="Ve2-ed-pkc"/>
+                        <outlet property="rewindButton" destination="UOj-Ld-oan" id="wGl-re-7fO"/>
                         <outlet property="totalTimeRemainingLabel" destination="3o4-N1-yrb" id="78S-rb-4sX"/>
                     </connections>
                 </viewController>
@@ -513,4 +433,11 @@
             <point key="canvasLocation" x="-1491.304347826087" y="-16.071428571428569"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Icons/back" width="512" height="512"/>
+        <image name="Icons/fast-forward" width="512" height="512"/>
+        <image name="Icons/next" width="512" height="512"/>
+        <image name="Icons/play" width="170.66667175292969" height="170.66667175292969"/>
+        <image name="Icons/rewind" width="512" height="512"/>
+    </resources>
 </document>
