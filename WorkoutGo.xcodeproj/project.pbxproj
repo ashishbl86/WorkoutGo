@@ -17,6 +17,7 @@
 		FF04FBEA226BFA380061AD07 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF04FBE9226BFA380061AD07 /* Exercise.swift */; };
 		FF04FBF0226BFB1B0061AD07 /* WorkoutProgramTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF04FBEF226BFB1B0061AD07 /* WorkoutProgramTableViewController.swift */; };
 		FF04FBF2226C1BBF0061AD07 /* WorkoutProgramTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF04FBF1226C1BBF0061AD07 /* WorkoutProgramTableViewCell.swift */; };
+		FF27861723629AFD004F2B1D /* Add_Edit_WorkoutExercise_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF27861623629AFD004F2B1D /* Add_Edit_WorkoutExercise_ViewController.swift */; };
 		FF7F01CE228E4F1A001ABDAE /* ExerciseContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7F01CD228E4F1A001ABDAE /* ExerciseContainerView.swift */; };
 		FF8E097A234A33550019F852 /* ExerciseCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF8E0979234A33550019F852 /* ExerciseCardView.xib */; };
 		FF8E097C234A342F0019F852 /* ExerciseCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8E097B234A342F0019F852 /* ExerciseCardView.swift */; };
@@ -42,6 +43,7 @@
 		FF04FBE9226BFA380061AD07 /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		FF04FBEF226BFB1B0061AD07 /* WorkoutProgramTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutProgramTableViewController.swift; sourceTree = "<group>"; };
 		FF04FBF1226C1BBF0061AD07 /* WorkoutProgramTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutProgramTableViewCell.swift; sourceTree = "<group>"; };
+		FF27861623629AFD004F2B1D /* Add_Edit_WorkoutExercise_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Add_Edit_WorkoutExercise_ViewController.swift; sourceTree = "<group>"; };
 		FF7F01CD228E4F1A001ABDAE /* ExerciseContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseContainerView.swift; sourceTree = "<group>"; };
 		FF8E0979234A33550019F852 /* ExerciseCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExerciseCardView.xib; sourceTree = "<group>"; };
 		FF8E097B234A342F0019F852 /* ExerciseCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseCardView.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				FF04FBB3226AB8A50061AD07 /* Main.storyboard */,
+				FF27861623629AFD004F2B1D /* Add_Edit_WorkoutExercise_ViewController.swift */,
 				FF9C430922851B900058A6E6 /* RoundedButtton.swift */,
 				FF04FBF3226C1BC80061AD07 /* WorkoutProgram TVC */,
 				FFC13C4B226FEB7900F396F1 /* Workout TVC */,
@@ -230,6 +233,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF04FBB8226AB8A50061AD07 /* WorkoutGo.xcdatamodeld in Sources */,
+				FF27861723629AFD004F2B1D /* Add_Edit_WorkoutExercise_ViewController.swift in Sources */,
 				FF04FBE6226BFA270061AD07 /* WorkoutProgram.swift in Sources */,
 				FFC13C4F2271667E00F396F1 /* ExerciseTableViewCell.swift in Sources */,
 				FFC13C48226FEB5600F396F1 /* WorkoutTableViewController.swift in Sources */,

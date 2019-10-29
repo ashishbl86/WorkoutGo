@@ -13,29 +13,18 @@ struct ExerciseInfo: Equatable {
     var duration: Int
 }
 
-// TODO: Move to where used OR create separate file
-func Globalfunc_durationFormatter(seconds: Int) -> String {
-    let secondsComponent = seconds % 60
-    let minutes = seconds / 60
-    
-    var formattedTimeDuration = ""
-    if minutes < 10 {
-        formattedTimeDuration.append("0")
-    }
-    formattedTimeDuration.append("\(minutes):")
-    
-    if secondsComponent < 10 {
-        formattedTimeDuration.append("0")
-    }
-    formattedTimeDuration.append("\(secondsComponent)")
-    return formattedTimeDuration
-}
-
 // MARK: -
 // MARK: -
 
-class ExerciseViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ExerciseTableViewCellDelegate, UINavigationControllerDelegate
-{    
+class ExerciseViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate, Add_Edit_WorkoutExerciseDelegate
+{
+    let workoutNameSendAction: ((String) -> Void)? = nil
+    var exerciseInfoSendAction: ((ExerciseInfo) -> Void)?
+    
+    func canAcceptName(_ name: String) -> (answer: Bool, errorMessage: String) {
+        return (true, "")
+    }
+    
     // MARK: - Outlets
     @IBOutlet weak var tableView: UITableView! {
         didSet {
@@ -51,26 +40,89 @@ class ExerciseViewController: UIViewController, UITableViewDataSource, UITableVi
     var workoutProgram: String!
     var workout: String!
     private var exercises = [ExerciseInfo]()
+    {
+        didSet {
+            if exercises.isEmpty {
+                comeOutOfEditingMode()
+                updateTableForNoExercises()
+                editButtonItem.isEnabled = false
+            }
+            else {
+                removeTableUpdatesForNoExercises()
+                editButtonItem.isEnabled = true
+            }
+        }
+    }
     var existingDelegate: UINavigationControllerDelegate?
+    var startingPositionIndicatorRowNum = 0
+    
+    private func comeOutOfEditingMode() {
+        if isEditing {
+            DispatchQueue.main.async {
+                let _ = self.editButtonItem.target?.perform(self.editButtonItem.action)
+            }
+        }
+    }
+    
+    var addButton: UIBarButtonItem? {
+        navigationItem.rightBarButtonItems?.first
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.rightBarButtonItems?.append(self.editButtonItem)
+        print("Status bar navigation style: \(preferredStatusBarStyle.rawValue). Navcontroller's \(navigationController?.preferredStatusBarStyle.rawValue)")
+        title = workout
+        navigationItem.rightBarButtonItems?.append(self.editButtonItem)
         exercises = try! Exercise.getAllExerciseInfo(forWorkoutProgram: workoutProgram, forWorkout: workout)
         tableView.reloadData()
+        if exercises.isEmpty {
+            updateTableForNoExercises()
+        }
+        navigationItem.largeTitleDisplayMode = .never
+    }
+    
+    private func updateTableForNoExercises() {
+            tableView.backgroundView = {
+                let emptyTableLabel = UILabel()
+                emptyTableLabel.numberOfLines = 0
+                emptyTableLabel.text = "Add exercises to continue"
+                emptyTableLabel.textColor = .systemGray
+                emptyTableLabel.font = UIFont.preferredFont(forTextStyle: .title3)
+                emptyTableLabel.textAlignment = .center
+                return emptyTableLabel
+            }()
+            
+            tableView.separatorStyle = .none
+    }
+    
+    private func removeTableUpdatesForNoExercises() {
+        if tableView.backgroundView != nil
+        {
+            tableView.backgroundView = nil
+            tableView.separatorStyle = .singleLine
+        }
     }
     
     // MARK: - Data source methods
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return exercises.count
+        if exercises.isEmpty {
+            return 0
+        }
+        
+        return startingPositionIndicatorRowNum == -1 ? exercises.count : exercises.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if  indexPath.row == startingPositionIndicatorRowNum {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Starting Position Indicator Cell", for: indexPath)
+            return cell
+        }
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "Exercise Cell", for: indexPath)
         if let exerciseCell = cell as? ExerciseTableViewCell {
-            exerciseCell.exerciseInfo = exercises[indexPath.row]
-            exerciseCell.delegate = self
+            let exerciseRowNum = startingPositionIndicatorRowNum == -1 || indexPath.row < startingPositionIndicatorRowNum ? indexPath.row : indexPath.row - 1
+            exerciseCell.exerciseInfo = exercises[exerciseRowNum]
         }
         
         return cell
@@ -78,14 +130,29 @@ class ExerciseViewController: UIViewController, UITableViewDataSource, UITableVi
     
     // MARK: - Addition of data
     
-    @IBAction func addWorkout(_ sender: UIBarButtonItem) {
-        let existingExerciseNames = exercises.map { $0.name }
-        let newExerciseName = "Untitled".madeUnique(withRespectTo: existingExerciseNames)
-        let newExercise = ExerciseInfo(name: newExerciseName, duration: 30)
+    private func addExercise(withInfo newExercise: ExerciseInfo) {
         exercises.append(newExercise)
         let indexOfNewExercise = exercises.firstIndex(of: newExercise)
         try! Exercise.addExercise(forWorkoutProgram: workoutProgram, forWorkout: workout, withName: newExercise.name, rowNum: indexOfNewExercise!)
-        tableView.insertRows(at: [IndexPath(row: indexOfNewExercise!, section: 0)], with: .automatic)
+        
+        var indexPathsOfRowsToBeInserted = [IndexPath]()
+        
+        if indexOfNewExercise == 0 { // i.e. this is the first exercise to be inserted
+            let indexPathOfStartPositionIndicatorRow = IndexPath(row: startingPositionIndicatorRowNum, section: 0)
+            indexPathsOfRowsToBeInserted.append(indexPathOfStartPositionIndicatorRow)
+        }
+        
+        let indexPathOfExerciseRow = IndexPath(row: indexOfNewExercise! + 1, section: 0)
+        indexPathsOfRowsToBeInserted.append(indexPathOfExerciseRow)
+        
+        tableView.insertRows(at: indexPathsOfRowsToBeInserted, with: .automatic)
+    }
+    
+    @IBAction func addWorkout(_ sender: UIBarButtonItem) {
+        exerciseInfoSendAction = {(exerciseInfo) in
+            self.addExercise(withInfo: exerciseInfo)
+        }
+        performSegue(withIdentifier: "Add_Edit Exercise", sender: sender)
     }
     
     // MARK: - Editing of table
@@ -105,8 +172,27 @@ class ExerciseViewController: UIViewController, UITableViewDataSource, UITableVi
         {
             try! Exercise.synchronize(withData: exercises, forProgram: workoutProgram, forWorkout: workout)
         }
+        
+        if editing == true {
+            let existingStartingPositionIndicatorRowNum = startingPositionIndicatorRowNum
+            startingPositionIndicatorRowNum = -1
+            tableView.deleteRows(at: [IndexPath(row: existingStartingPositionIndicatorRowNum, section: 0)], with: .automatic)
+        }
+        else {
+            startingPositionIndicatorRowNum = 0
+            if exercises.isEmpty == false {
+                tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+            }
+        }
         super.setEditing(editing, animated: animated)
         tableView.setEditing(editing, animated: animated)
+        
+        if isEditing {
+            addButton?.isEnabled = false
+        }
+        else {
+            addButton?.isEnabled = true
+        }
     }
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
@@ -114,28 +200,19 @@ class ExerciseViewController: UIViewController, UITableViewDataSource, UITableVi
         exercises.insert(movedExercise, at: destinationIndexPath.row)
     }
     
-    // MARK: - Renaming of data
-    
-    func didUpdateExerciseName(from oldName: String, to newName: String, inCell cell: ExerciseTableViewCell) {
-        let existingExerciseNames = exercises.map { $0.name }
-        if existingExerciseNames.contains(newName) == false {
-            let indexPath = tableView.indexPath(for: cell)
-            exercises[indexPath!.row].name = newName
-            try! Exercise.updateExercise(forProgram: workoutProgram, forWorkout: workout, from: oldName, to: newName, withDuration: cell.exerciseInfo.duration)
+    func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        try! Exercise.synchronize(withData: exercises, forProgram: workoutProgram, forWorkout: workout)
+        exerciseInfoSendAction = {(exerciseInfo) in
+            self.updateExerciseDetails(at: indexPath, to: exerciseInfo)
         }
-        else {
-            cell.exerciseInfo.name = oldName
-            alertUserForPreexistingName(whenUpdatingCell: cell)
-        }
+        performSegue(withIdentifier: "Add_Edit Exercise", sender: indexPath)
     }
     
-    private func alertUserForPreexistingName(whenUpdatingCell cell: ExerciseTableViewCell) {
-        let alert = UIAlertController(title: "Name already exists", message: "Another exercise already exists with this name. Enter a different name", preferredStyle: .alert)
-        let alertAction_OK = UIAlertAction(title: "Ok", style: .default) { _ in
-            cell.receiveNameFromUser()
-        }
-        alert.addAction(alertAction_OK)
-        present(alert, animated: true)
+    // MARK: - Update of data
+    func updateExerciseDetails(at indexPath: IndexPath, to newExercise: ExerciseInfo) {
+        exercises[indexPath.row] = newExercise
+        tableView.reloadRows(at: [indexPath], with: .automatic)
+        try! Exercise.updateExercise(forProgram: workoutProgram, forWorkout: workout, at: indexPath.row, to: newExercise.name, withDuration: newExercise.duration)
     }
 
     @IBAction func startWorkout(_ sender: UIButton) {
@@ -145,11 +222,33 @@ class ExerciseViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "Start Workout" {
+        switch segue.identifier {
+        case "Start Workout":
             if let runningWorkoutVC = segue.destination as? RunningWorkoutViewController {
                 runningWorkoutVC.exerciseInfoList = exercises
-                runningWorkoutVC.currentExerciseInfoIndex = tableView.indexPath(for: getCurrentSelectedCell)!.row
+                runningWorkoutVC.currentExerciseInfoIndex = startingPositionIndicatorRowNum
             }
+            
+        case "Add_Edit Exercise":
+            if let addEditExerciseVC = segue.destination as? Add_Edit_WorkoutExercise_ViewController {
+                addEditExerciseVC.delegate = self
+                addEditExerciseVC.operationType = .exercise
+                
+                switch sender {
+                case is UIBarButtonItem:
+                    addEditExerciseVC.title = "Add Exercise"
+                    
+                case let indexPath as IndexPath:
+                    addEditExerciseVC.title = "Edit Exercise"
+                    addEditExerciseVC.previousExerciseInfo = exercises[indexPath.row]
+                    
+                default:
+                    break
+                }
+            }
+            
+        default:
+            break
         }
     }
     
@@ -164,8 +263,28 @@ class ExerciseViewController: UIViewController, UITableViewDataSource, UITableVi
         return nil
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if tableView.cellForRow(at: indexPath) is ExerciseTableViewCell {
+            let currentStartingPositionRowIndexPath = IndexPath(row: startingPositionIndicatorRowNum, section: 0)
+            let targetStartingPositionRowIndexPath = IndexPath(row: indexPath.row < startingPositionIndicatorRowNum ? indexPath.row : indexPath.row - 1, section: 0)
+            
+            if tableView.cellForRow(at: currentStartingPositionRowIndexPath) != nil {
+                startingPositionIndicatorRowNum = targetStartingPositionRowIndexPath.row
+                tableView.moveRow(at: currentStartingPositionRowIndexPath, to: targetStartingPositionRowIndexPath)
+            }
+            else {
+                tableView.performBatchUpdates({
+                    startingPositionIndicatorRowNum = -1
+                    tableView.deleteRows(at: [currentStartingPositionRowIndexPath], with: .automatic)
+                    startingPositionIndicatorRowNum = targetStartingPositionRowIndexPath.row
+                    tableView.insertRows(at: [targetStartingPositionRowIndexPath], with: .automatic)
+                })
+            }
+        }
+    }
+    
     var getCurrentSelectedCell: ExerciseTableViewCell {
-        return tableView.cellForRow(at: tableView.indexPathForSelectedRow ?? IndexPath(row: 0, section: 0)) as! ExerciseTableViewCell
+        return tableView.cellForRow(at: IndexPath(row: startingPositionIndicatorRowNum + 1, section: 0)) as! ExerciseTableViewCell
     }
 }
 
@@ -268,7 +387,7 @@ class StartWorkoutTransitionAnimator: NSObject, UIViewControllerAnimatedTransiti
         animateTransitionOfBackgroundColor(to: destinationView.backgroundColor, withBaseView: animationBaseView, withDuration: animationDuration)
         animateAppearanceOfExerciseCardView(presentInVC: destinationVC, withBaseView: animationBaseView, withDuration: animationDuration)
         
-        transitionView(from: selectedTableCell.exerciseNameTextField, to: destinationVC.currentExerciseNameLabel, usingBaseView: animationBaseView, duration: animationDuration)
+        transitionView(from: selectedTableCell.exerciseNameLabel, to: destinationVC.currentExerciseNameLabel, usingBaseView: animationBaseView, duration: animationDuration)
         transitionView(from: selectedTableCell.durationLabel, to: destinationVC.currentExerciseDurationLabel, usingBaseView: animationBaseView, duration: animationDuration)
         bringInView(sourceVC.exerciseControlsView, to: animationBaseView)
         

@@ -8,16 +8,86 @@
 
 import UIKit
 
-class WorkoutTableViewController: UITableViewController, WorkoutTableViewCellDelegate {
+class WorkoutTableViewController: UITableViewController, Add_Edit_WorkoutExerciseDelegate {
+    
+    var workoutNameSendAction: ((String) -> Void)?
+    let exerciseInfoSendAction: ((ExerciseInfo) -> Void)? = nil //Not used. Only for protocol conformance
+    
+    func canAcceptName(_ name: String) -> (answer: Bool, errorMessage: String) {
+        if workouts.contains(name) {
+            return (answer: false, errorMessage: "Workout with this name already exists.")
+        }
+        
+        return (answer: true, errorMessage: "")
+    }
 
-    var workoutProgram: String!
+    var workoutProgram = "Workouts"
     private var workouts = [String]()
+    {
+        didSet {
+            if workouts.isEmpty {
+                comeOutOfEditingMode()
+                displayTableBackgroundForNoData()
+                editButtonItem.isEnabled = false
+            }
+            else {
+                removeTableBackground()
+                editButtonItem.isEnabled = true
+            }
+        }
+    }
+    
+    private func comeOutOfEditingMode() {
+        if isEditing {
+            DispatchQueue.main.async {
+                let _ = self.editButtonItem.target?.perform(self.editButtonItem.action)
+            }
+        }
+    }
+    
+    var addButton: UIBarButtonItem? {
+        navigationItem.rightBarButtonItems?.first
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.prefersLargeTitles = true
         title = workoutProgram
-        self.navigationItem.rightBarButtonItems?.append(self.editButtonItem)
+        navigationItem.rightBarButtonItems?.append(self.editButtonItem)
+        createWorkoutProgramIfNotAvailable(withName: workoutProgram)
         workouts = try! Workout.getAllWorkoutNames(forWorkoutProgram: workoutProgram)
+        if workouts.isEmpty {
+            displayTableBackgroundForNoData()
+        }
+    }
+    
+    private func createWorkoutProgramIfNotAvailable(withName workoutProgramName: String) {
+        let workoutProgram = try? WorkoutProgram.getWorkoutProgram(forName: workoutProgramName)
+        if workoutProgram == nil {
+            WorkoutProgram.addWorkoutProgram(withName: workoutProgramName, rowNum: 0)
+        }
+    }
+    
+    private func displayTableBackgroundForNoData() {
+            tableView.backgroundView = {
+                let emptyTableLabel = UILabel()
+                emptyTableLabel.numberOfLines = 0
+                emptyTableLabel.text = "Add workouts to continue"
+                emptyTableLabel.textColor = .systemGray
+                emptyTableLabel.font = UIFont.preferredFont(forTextStyle: .title3)
+                emptyTableLabel.textAlignment = .center
+                return emptyTableLabel
+            }()
+            
+            tableView.separatorStyle = .none
+    }
+    
+    private func removeTableBackground() {
+        if tableView.backgroundView != nil
+        {
+            tableView.backgroundView = nil
+            tableView.separatorStyle = .singleLine
+        }
     }
 
     // MARK: - Data source methods
@@ -30,7 +100,6 @@ class WorkoutTableViewController: UITableViewController, WorkoutTableViewCellDel
         let cell = tableView.dequeueReusableCell(withIdentifier: "Workout Cell", for: indexPath)
         if let workoutCell = cell as? WorkoutTableViewCell {
             workoutCell.name = workouts[indexPath.row]
-            workoutCell.delegate = self
         }
 
         return cell
@@ -38,18 +107,25 @@ class WorkoutTableViewController: UITableViewController, WorkoutTableViewCellDel
 
     // MARK: - Addition of data
     
-    @IBAction func addWorkout(_ sender: UIBarButtonItem) {
-        let newWorkout = "Untitled".madeUnique(withRespectTo: workouts)
-        workouts.append(newWorkout)
-        let indexOfNewWorkout = workouts.firstIndex(of: newWorkout)
-        try! Workout.addWorkout(forProgram: workoutProgram, withName: newWorkout, rowNum: indexOfNewWorkout!)
+    private func addWorkout(_ name: String) {
+        workouts.append(name)
+        let indexOfNewWorkout = workouts.firstIndex(of: name)
+        try! Workout.addWorkout(forProgram: workoutProgram, withName: name, rowNum: indexOfNewWorkout!)
         tableView.insertRows(at: [IndexPath(row: indexOfNewWorkout!, section: 0)], with: .automatic)
     }
+    
+    @IBAction func addWorkoutButton(_ sender: UIBarButtonItem) {
+        workoutNameSendAction = {name in
+            self.addWorkout(name)
+        }
+        performSegue(withIdentifier: "Add_Edit Workout", sender: sender)
+    }
+    
     
     // MARK: - Editing of table
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return tableView.isEditing
+        return isEditing
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -65,6 +141,13 @@ class WorkoutTableViewController: UITableViewController, WorkoutTableViewCellDel
             try! Workout.synchronize(withData: workouts, forProgram: workoutProgram)
         }
         super.setEditing(editing, animated: animated)
+        
+        if isEditing {
+            addButton?.isEnabled = false
+        }
+        else {
+            addButton?.isEnabled = true
+        }
     }
     
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
@@ -72,36 +155,51 @@ class WorkoutTableViewController: UITableViewController, WorkoutTableViewCellDel
         workouts.insert(movedWorkout, at: to.row)
     }
     
-    // MARK: - Renaming of data
-    
-    func didUpdateWorkoutName(from oldName: String, to newName: String, inCell cell: WorkoutTableViewCell) {
-        if workouts.contains(newName) == false {
-            let indexPath = tableView.indexPath(for: cell)
-            workouts[indexPath!.row] = newName
-            try! Workout.updateWorkoutName(forProgram: workoutProgram, from: oldName, to: newName)
+    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        workoutNameSendAction = {name in
+            self.updateWorkoutName(at: indexPath, to: name)
         }
-        else {
-            cell.name = oldName
-            alertUserForPreexistingName(whenUpdatingCell: cell)
-        }
+        performSegue(withIdentifier: "Add_Edit Workout", sender: indexPath)
     }
     
-    private func alertUserForPreexistingName(whenUpdatingCell cell: WorkoutTableViewCell) {
-        let alert = UIAlertController(title: "Name already exists", message: "Another workout already exists with this name. Enter a different name", preferredStyle: .alert)
-        let alertAction_OK = UIAlertAction(title: "Ok", style: .default) { _ in
-            cell.receiveNameFromUser()
-        }
-        alert.addAction(alertAction_OK)
-        present(alert, animated: true)
+    // MARK: - Renaming of data
+    
+    func updateWorkoutName(at indexPath: IndexPath, to newName: String) {
+        let oldName = workouts[indexPath.row]
+        workouts[indexPath.row] = newName
+        tableView.reloadRows(at: [indexPath], with: .automatic)
+        try! Workout.updateWorkoutName(forProgram: workoutProgram, from: oldName, to: newName)
     }
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "Open Workout" {
+        switch segue.identifier {
+        case "Open Workout":
             if let exerciseVC = segue.destination as? ExerciseViewController, let selectedCell = sender as? WorkoutTableViewCell {
                 exerciseVC.workoutProgram = workoutProgram
-                exerciseVC.workout = selectedCell.workoutNameTextField.text
+                exerciseVC.workout = selectedCell.name
             }
+            
+        case "Add_Edit Workout":
+            if let addEditWorkoutVC = segue.destination as? Add_Edit_WorkoutExercise_ViewController {
+                addEditWorkoutVC.delegate = self
+                addEditWorkoutVC.operationType = .workout
+                
+                switch sender {
+                case is UIBarButtonItem:
+                    addEditWorkoutVC.title = "Add Workout"
+                    
+                case let indexPath as IndexPath:
+                    addEditWorkoutVC.title = "Edit Workout"
+                    addEditWorkoutVC.previousWorkoutName = workouts[indexPath.row]
+                    
+                default:
+                    break
+                }
+            }
+            
+        default:
+            break
         }
     }
 }

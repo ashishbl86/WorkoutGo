@@ -15,8 +15,9 @@ class WorkoutProgramTableViewController: UITableViewController, WorkoutProgramTa
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Workout Programs"
-        self.navigationItem.rightBarButtonItems?.append(self.editButtonItem)
+        navigationItem.rightBarButtonItems?.append(self.editButtonItem)
         workoutPrograms = try! WorkoutProgram.getAllWorkoutProgramNames()
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     // MARK: - Data source methods
@@ -100,7 +101,7 @@ class WorkoutProgramTableViewController: UITableViewController, WorkoutProgramTa
         if segue.identifier == "Open Workout Program" {
             if let workoutTVC = segue.destination as? WorkoutTableViewController, let selectedCell = sender as? WorkoutProgramTableViewCell {
                 assert(selectedCell.programNameTextField.text != nil, "Workout program is nil")
-                workoutTVC.workoutProgram = selectedCell.programNameTextField.text
+                workoutTVC.workoutProgram = selectedCell.programNameTextField.text!
             }
         }
     }
