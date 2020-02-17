@@ -302,7 +302,9 @@ class RunningWorkoutViewController: UIViewController, ExerciseContainerViewLayou
         case .jumpToNext:
             totalExerciseDurationInSecs -= currentExerciseRemainingTime
         case .jumpToPrevious:
-            totalExerciseDurationInSecs += timeElapsedOfCurrentExercise + currentExerciseDuration
+            let indexOfPreviousExercise = exerciseInfoList.index(before: currentExerciseInfoIndex)
+            let durationOfPreviousExercise = exerciseInfoList[indexOfPreviousExercise].duration
+            totalExerciseDurationInSecs += timeElapsedOfCurrentExercise + durationOfPreviousExercise
         }
         
         totalTimeRemainingLabel.text = Globalfunc_durationFormatter(seconds: totalExerciseDurationInSecs)

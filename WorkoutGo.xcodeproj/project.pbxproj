@@ -23,6 +23,7 @@
 		FF8E097C234A342F0019F852 /* ExerciseCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8E097B234A342F0019F852 /* ExerciseCardView.swift */; };
 		FF8E097E234A38430019F852 /* ExerciseCardViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8E097D234A38430019F852 /* ExerciseCardViewContainer.swift */; };
 		FF9C430A22851B900058A6E6 /* RoundedButtton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9C430922851B900058A6E6 /* RoundedButtton.swift */; };
+		FFA1D8E923F97D6D00DFCE03 /* StartWorkoutTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA1D8E823F97D6D00DFCE03 /* StartWorkoutTransitionAnimator.swift */; };
 		FFC13C48226FEB5600F396F1 /* WorkoutTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC13C47226FEB5600F396F1 /* WorkoutTableViewController.swift */; };
 		FFC13C4A226FEB7200F396F1 /* WorkoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC13C49226FEB7200F396F1 /* WorkoutTableViewCell.swift */; };
 		FFC13C4D2271579D00F396F1 /* ExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC13C4C2271579D00F396F1 /* ExerciseViewController.swift */; };
@@ -49,6 +50,8 @@
 		FF8E097B234A342F0019F852 /* ExerciseCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseCardView.swift; sourceTree = "<group>"; };
 		FF8E097D234A38430019F852 /* ExerciseCardViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseCardViewContainer.swift; sourceTree = "<group>"; };
 		FF9C430922851B900058A6E6 /* RoundedButtton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButtton.swift; sourceTree = "<group>"; };
+		FFA1D8E523F6919800DFCE03 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		FFA1D8E823F97D6D00DFCE03 /* StartWorkoutTransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartWorkoutTransitionAnimator.swift; sourceTree = "<group>"; };
 		FFC13C47226FEB5600F396F1 /* WorkoutTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTableViewController.swift; sourceTree = "<group>"; };
 		FFC13C49226FEB7200F396F1 /* WorkoutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTableViewCell.swift; sourceTree = "<group>"; };
 		FFC13C4C2271579D00F396F1 /* ExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseViewController.swift; sourceTree = "<group>"; };
@@ -70,6 +73,7 @@
 		FF04FBA3226AB8A50061AD07 = {
 			isa = PBXGroup;
 			children = (
+				FFA1D8E523F6919800DFCE03 /* README.md */,
 				FF04FBAE226AB8A50061AD07 /* WorkoutGo */,
 				FF04FBAD226AB8A50061AD07 /* Products */,
 			);
@@ -144,6 +148,7 @@
 			children = (
 				FFC13C4C2271579D00F396F1 /* ExerciseViewController.swift */,
 				FFC13C4E2271667E00F396F1 /* ExerciseTableViewCell.swift */,
+				FFA1D8E823F97D6D00DFCE03 /* StartWorkoutTransitionAnimator.swift */,
 			);
 			path = "Exercise VC";
 			sourceTree = "<group>";
@@ -240,6 +245,7 @@
 				FF04FBE8226BFA310061AD07 /* Workout.swift in Sources */,
 				FF9C430A22851B900058A6E6 /* RoundedButtton.swift in Sources */,
 				FF04FBB0226AB8A50061AD07 /* AppDelegate.swift in Sources */,
+				FFA1D8E923F97D6D00DFCE03 /* StartWorkoutTransitionAnimator.swift in Sources */,
 				FF04FBF2226C1BBF0061AD07 /* WorkoutProgramTableViewCell.swift in Sources */,
 				FFC13C4D2271579D00F396F1 /* ExerciseViewController.swift in Sources */,
 				FFC13C522275463C00F396F1 /* RunningWorkoutViewController.swift in Sources */,
@@ -395,7 +401,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = AWZNFT2MNX;
 				INFOPLIST_FILE = WorkoutGo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -414,7 +419,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = AWZNFT2MNX;
 				INFOPLIST_FILE = WorkoutGo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (

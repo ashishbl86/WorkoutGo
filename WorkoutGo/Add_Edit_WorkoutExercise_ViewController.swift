@@ -72,7 +72,7 @@ class Add_Edit_WorkoutExercise_ViewController: UIViewController, UITextFieldDele
         }
     }
     
-    @IBOutlet weak var viewAboveNavBar: UIView!
+    
     @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var operationNameLabel: UILabel!
     @IBOutlet weak var minutesPickerView: UIPickerView! {

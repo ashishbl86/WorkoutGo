@@ -12,14 +12,6 @@ import UIKit
 class ExerciseCardViewContainer: UIView {
     private var exerciseCard: ExerciseCardView!
     private var progressViewAnimator: UIViewPropertyAnimator!
-    private var objectId: String {
-        if progressViewAnimator != nil {
-            return ObjectIdentifier(progressViewAnimator).debugDescription
-        }
-        else {
-            return "NULL"
-        }
-    }
     
     var titleLabel: UILabel {
         exerciseCard.titleLabel
