@@ -18,7 +18,7 @@ class StartWorkoutTransitionAnimator: NSObject, UIViewControllerAnimatedTransiti
         self.completionTask = completionTask
     }
     
-    private let duration: TimeInterval = 0.6
+    private let duration: TimeInterval = 5.0//0.6
     private let transitionViewOverlapPercentage = 20.0
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
@@ -103,8 +103,8 @@ class StartWorkoutTransitionAnimator: NSObject, UIViewControllerAnimatedTransiti
         animateTransitionOfBackgroundColor(to: destinationView.backgroundColor, withBaseView: animationBaseView, withDuration: animationDuration)
         animateAppearanceOfExerciseCardView(presentInVC: destinationVC, withBaseView: animationBaseView, withDuration: animationDuration)
         
-        transitionView(from: selectedTableCell.exerciseNameLabel, to: destinationVC.currentExerciseNameLabel, usingBaseView: animationBaseView, duration: animationDuration)
-        transitionView(from: selectedTableCell.durationLabel, to: destinationVC.currentExerciseDurationLabel, usingBaseView: animationBaseView, duration: animationDuration)
+        transitionView(from: selectedTableCell.exerciseNameLabel, to: destinationVC.currentExerciseView.titleLabel, usingBaseView: animationBaseView, duration: animationDuration)
+        transitionView(from: selectedTableCell.durationLabel, to: destinationVC.currentExerciseView.durationLabel, usingBaseView: animationBaseView, duration: animationDuration)
         bringInView(sourceVC.exerciseControlsView, to: animationBaseView)
         
         let finalTransitionTask = createFinalTransitionTask(from: animationBaseView, to: destinationView, withDuration: transitionDuration, onCompletion: {transitionContext.completeTransition(true)})

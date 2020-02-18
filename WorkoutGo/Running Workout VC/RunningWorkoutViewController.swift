@@ -9,37 +9,21 @@
 import UIKit
 import AVFoundation
 
-class RunningWorkoutViewController: UIViewController, ExerciseContainerViewLayoutDelegate {
-    lazy var horizontalSeparation: CGFloat = (exercisesContainerView.bounds.width - currentExerciseView.frame.width)
+class RunningWorkoutViewController: UIViewController {
     
     private enum ExerciseState {
         case running
         case nonRunning
     }
     
-    private enum ExerciseOperation {
+    enum ExerciseOperation {
         case jumpToPrevious
         case jumpToNext
     }
 
-    func layoutSubviews(for view: ExerciseContainerView) {
-        let originXCurrentExercise = (exercisesContainerView.bounds.width - currentExerciseView.frame.width)/2
-        let frameOriginOfCurrentExerciseView = CGPoint(x: originXCurrentExercise, y: currentExerciseView.frame.origin.y)
-        let frameOriginOfPreviousNextExerciseView = CGPoint(x: frameOriginOfCurrentExerciseView.x + currentExerciseView.frame.width + horizontalSeparation, y: frameOriginOfCurrentExerciseView.y)
-        
-        currentExerciseView.frame.origin = frameOriginOfCurrentExerciseView
-        previousAndNextExerciseView.frame.origin = frameOriginOfPreviousNextExerciseView
-    }
-
     @IBOutlet weak var controlsContainerView: UIView!
-    @IBOutlet weak var currentExerciseView: ExerciseCardViewContainer!
-    @IBOutlet weak var previousAndNextExerciseView: ExerciseCardViewContainer!
     @IBOutlet weak var totalTimeRemainingLabel: UILabel!
-    @IBOutlet weak var exercisesContainerView: ExerciseContainerView! {
-        didSet {
-            exercisesContainerView.delegate = self
-        }
-    }
+    @IBOutlet weak var exercisesContainerView: ExerciseContainerView!
     
     @IBOutlet weak var playPauseButton: RoundedButtton!
     @IBOutlet weak var previousButton: RoundedButtton!
@@ -51,6 +35,7 @@ class RunningWorkoutViewController: UIViewController, ExerciseContainerViewLayou
     var currentExerciseInfoIndex: Int! {
         didSet {
             currentExerciseRemainingTime = currentExerciseDuration
+            updateButtonStates()
         }
     }
     
@@ -108,33 +93,37 @@ class RunningWorkoutViewController: UIViewController, ExerciseContainerViewLayou
         exerciseInfoList[currentExerciseInfoIndex].duration
     }
     
-    var currentExerciseNameLabel: UILabel {
-        currentExerciseView.titleLabel
-    }
-    
-    var currentExerciseDurationLabel: UILabel {
-        currentExerciseView.durationLabel
+    var currentExerciseView: ExerciseCardViewContainer {
+        exercisesContainerView.foregroundExerciseView
     }
     
     var currentExerciseFractionalComplete: Float {
         Float(currentExerciseDuration - currentExerciseRemainingTime) / Float(currentExerciseDuration)
     }
-
-    private func updateViewsAppearence() {
-        let exerciseCardBackgroundColor = UIColor(patternImage: UIImage(named: "WhitePolygon")!)
-        currentExerciseView.setBackgroundColor(exerciseCardBackgroundColor)
-        previousAndNextExerciseView.setBackgroundColor(exerciseCardBackgroundColor)
-        createShadow(on: currentExerciseView)
-        createShadow(on: previousAndNextExerciseView)
-        view.backgroundColor = UIColor(patternImage: UIImage(named: "BlackPolygon")!)
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = UIColor(patternImage: UIImage(named: "BlackPolygon")!)
+        exercisesContainerView.initialize(withExerciseName: currentExerciseName, withDurationInSecs: currentExerciseDuration)
         configureButtonLabels()
-        updateViewsAppearence()
         populateTotalExerciseTime()
-        currentExerciseView.prepareCard(withName: currentExerciseName, withDurationInSecs: currentExerciseDuration)
+        updateButtonStates()
+    }
+    
+    private func updateButtonStates() {
+        if currentExerciseInfoIndex == exerciseInfoList.startIndex {
+            previousButton?.isEnabled = false
+        }
+        else {
+            previousButton?.isEnabled = true
+        }
+        
+        if currentExerciseInfoIndex == exerciseInfoList.lastIndex {
+            nextButton?.isEnabled = false
+        }
+        else {
+            nextButton?.isEnabled = true
+        }
     }
     
     private func configureButtonLabels() {
@@ -161,27 +150,11 @@ class RunningWorkoutViewController: UIViewController, ExerciseContainerViewLayou
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        previousAndNextExerciseView.isHidden = true
+        exercisesContainerView.backgroundExerciseView.isHidden = true
         currentExerciseView.stopProgressViewAnimator()
         if exerciseTimer?.isValid ?? false {
             exerciseTimer?.invalidate()
         }
-    }
-    
-    private func createControlViewShadow() {
-        //controlsContainerView.layer.cornerRadius = 10
-        controlsContainerView.layer.shadowColor = UIColor.black.cgColor
-        controlsContainerView.layer.shadowOffset = CGSize(width: 0, height: 0)
-        controlsContainerView.layer.shadowRadius = 2
-        controlsContainerView.layer.shadowOpacity = 0.4
-    }
-    
-    private func createShadow(on view: UIView) {
-        view.layer.cornerRadius = 10
-        view.layer.shadowColor = UIColor.black.cgColor
-        view.layer.shadowOffset = CGSize(width: 3, height: 3)
-        view.layer.shadowRadius = 10
-        view.layer.shadowOpacity = 0.4
     }
     
     @objc private func decrementExerciseTime() {
@@ -226,33 +199,6 @@ class RunningWorkoutViewController: UIViewController, ExerciseContainerViewLayou
         toggleExercise()
     }
     
-    private func animateCardTranstion(withOperation operation: ExerciseOperation) {
-        var targetLocationOfCurrent = CGPoint.zero
-        
-        switch operation {
-        case .jumpToPrevious:
-            previousAndNextExerciseView.center = CGPoint(x: currentExerciseView.center.x - previousAndNextExerciseView.frame.width - horizontalSeparation, y: currentExerciseView.center.y)
-            targetLocationOfCurrent = CGPoint(x: currentExerciseView.center.x + currentExerciseView.frame.width + horizontalSeparation, y: currentExerciseView.center.y)
-            
-        case .jumpToNext:
-            previousAndNextExerciseView.center = CGPoint(x: currentExerciseView.center.x + previousAndNextExerciseView.frame.width + horizontalSeparation, y: currentExerciseView.center.y)
-            targetLocationOfCurrent = CGPoint(x: currentExerciseView.center.x - currentExerciseView.frame.width - horizontalSeparation, y: currentExerciseView.center.y)
-        }
-        
-        let animationDuration = 0.6
-        let existingLocationOfCurrent = currentExerciseView.center
-        
-        UIViewPropertyAnimator.runningPropertyAnimator(withDuration: animationDuration, delay: 0, options: .curveEaseOut, animations: {
-            self.previousAndNextExerciseView.center = existingLocationOfCurrent
-            self.currentExerciseView.center = targetLocationOfCurrent
-        })
-        
-        //Reassign the views as per new roles
-        let swapStorage_previous_next = previousAndNextExerciseView
-        previousAndNextExerciseView = currentExerciseView
-        currentExerciseView = swapStorage_previous_next
-    }
-    
     private func performExerciseOperation(_ operation: ExerciseOperation) {
         let exerciseStateAtStartOfOperation = exerciseState
         if exerciseStateAtStartOfOperation == .running {
@@ -266,9 +212,7 @@ class RunningWorkoutViewController: UIViewController, ExerciseContainerViewLayou
         case .jumpToNext:
             exerciseInfoList.formIndex(after: &currentExerciseInfoIndex)
         }
-        previousAndNextExerciseView.prepareCard(withName: currentExerciseName, withDurationInSecs: currentExerciseDuration)
-        animateCardTranstion(withOperation: operation)
-        previousAndNextExerciseView.stopProgressViewAnimator()
+        exercisesContainerView.transitionExerciseView(forOperation: operation, withNewExerciseName: currentExerciseName, withDuration: currentExerciseDuration)
         if exerciseStateAtStartOfOperation == .running {
             toggleExercise(withSound: false)
         }
@@ -282,17 +226,17 @@ class RunningWorkoutViewController: UIViewController, ExerciseContainerViewLayou
     }
     
     @IBAction func jumpToPreviousExercise(_ sender: RoundedButtton) {
-        if currentExerciseInfoIndex != exerciseInfoList.startIndex {
-            playNextPreviousSound()
-            performExerciseOperation(.jumpToPrevious)
-        }
+        playNextPreviousSound()
+        performExerciseOperation(.jumpToPrevious)
+//        if currentExerciseInfoIndex != exerciseInfoList.startIndex {
+//        }
     }
     
     @IBAction func jumpToNextExercise(_ sender: RoundedButtton) {
-        if let validLastIndex = exerciseInfoList.lastIndex, currentExerciseInfoIndex < validLastIndex {
-            playNextPreviousSound()
-            performExerciseOperation(.jumpToNext)
-        }
+        playNextPreviousSound()
+        performExerciseOperation(.jumpToNext)
+//        if let validLastIndex = exerciseInfoList.lastIndex, currentExerciseInfoIndex < validLastIndex {
+//        }
     }
     
     private func adjustTotalTime(withOperation operation: ExerciseOperation) {

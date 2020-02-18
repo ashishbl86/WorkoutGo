@@ -428,12 +428,10 @@
                     <navigationItem key="navigationItem" id="dhT-J2-XSr"/>
                     <connections>
                         <outlet property="controlsContainerView" destination="dml-cl-5Pf" id="zvq-Ae-0Nl"/>
-                        <outlet property="currentExerciseView" destination="9LF-W0-l87" id="OSg-VF-4bk"/>
                         <outlet property="exercisesContainerView" destination="g7f-Ie-aC2" id="s9w-sI-Eyf"/>
                         <outlet property="fastForwardButton" destination="VNS-je-PIP" id="Uy7-HB-EBC"/>
                         <outlet property="nextButton" destination="j4F-9b-ih0" id="nTW-dj-TJU"/>
                         <outlet property="playPauseButton" destination="WzY-74-zDJ" id="usV-zR-bHf"/>
-                        <outlet property="previousAndNextExerciseView" destination="DQD-jU-SHr" id="cvL-Jb-eC5"/>
                         <outlet property="previousButton" destination="yDl-is-hH0" id="Ve2-ed-pkc"/>
                         <outlet property="rewindButton" destination="UOj-Ld-oan" id="wGl-re-7fO"/>
                         <outlet property="totalTimeRemainingLabel" destination="3o4-N1-yrb" id="78S-rb-4sX"/>

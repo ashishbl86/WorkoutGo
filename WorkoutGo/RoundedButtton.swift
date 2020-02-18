@@ -19,6 +19,7 @@ class RoundedButtton: UIButton {
         }
     }
     var highlightedBackgroundColor: UIColor!
+    let disabledBackgroundColor = UIColor.systemGray
     
 //    let blackGradientLayer = CAGradientLayer()
 //    let whiteGradientLayer = CAGradientLayer()
@@ -34,7 +35,17 @@ class RoundedButtton: UIButton {
     }
     
     private var backgroundColorAsPerState: UIColor? {
-        isHighlighted ? highlightedBackgroundColor : defaultBackgroundColor
+        if isEnabled == false {
+            return disabledBackgroundColor
+        }
+        
+        return isHighlighted ? highlightedBackgroundColor : defaultBackgroundColor
+    }
+    
+    override var isEnabled: Bool {
+        didSet {
+            backgroundColor = isEnabled ? defaultBackgroundColor : disabledBackgroundColor
+        }
     }
 
     override var isHighlighted: Bool {
