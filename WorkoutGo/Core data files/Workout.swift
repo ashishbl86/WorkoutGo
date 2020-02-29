@@ -49,6 +49,7 @@ class Workout: NSManagedObject {
     }
     
     static func synchronize(withData names: [String], forProgram programName: String) throws {
+        //"withData" will always be a subset of workouts in core data.
         var workouts = try getAllWorkouts(forWorkoutProgram: programName)
         for (index, name) in names.enumerated() {
             let workoutIndex = workouts.firstIndex { $0.name == name }!

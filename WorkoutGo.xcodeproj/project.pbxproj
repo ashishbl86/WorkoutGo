@@ -18,6 +18,8 @@
 		FF04FBF0226BFB1B0061AD07 /* WorkoutProgramTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF04FBEF226BFB1B0061AD07 /* WorkoutProgramTableViewController.swift */; };
 		FF04FBF2226C1BBF0061AD07 /* WorkoutProgramTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF04FBF1226C1BBF0061AD07 /* WorkoutProgramTableViewCell.swift */; };
 		FF27861723629AFD004F2B1D /* Add_Edit_WorkoutExercise_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF27861623629AFD004F2B1D /* Add_Edit_WorkoutExercise_ViewController.swift */; };
+		FF6B01CF2408AE5C00704C7C /* SampleWorkouts.json in Resources */ = {isa = PBXBuildFile; fileRef = FF6B01CE2408AE5C00704C7C /* SampleWorkouts.json */; };
+		FF6B01D22408B57200704C7C /* SampleWorkout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6B01D12408B57200704C7C /* SampleWorkout.swift */; };
 		FF7F01CE228E4F1A001ABDAE /* ExerciseContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7F01CD228E4F1A001ABDAE /* ExerciseContainerView.swift */; };
 		FF8E097A234A33550019F852 /* ExerciseCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF8E0979234A33550019F852 /* ExerciseCardView.xib */; };
 		FF8E097C234A342F0019F852 /* ExerciseCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8E097B234A342F0019F852 /* ExerciseCardView.swift */; };
@@ -45,6 +47,8 @@
 		FF04FBEF226BFB1B0061AD07 /* WorkoutProgramTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutProgramTableViewController.swift; sourceTree = "<group>"; };
 		FF04FBF1226C1BBF0061AD07 /* WorkoutProgramTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutProgramTableViewCell.swift; sourceTree = "<group>"; };
 		FF27861623629AFD004F2B1D /* Add_Edit_WorkoutExercise_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Add_Edit_WorkoutExercise_ViewController.swift; sourceTree = "<group>"; };
+		FF6B01CE2408AE5C00704C7C /* SampleWorkouts.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SampleWorkouts.json; sourceTree = "<group>"; };
+		FF6B01D12408B57200704C7C /* SampleWorkout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleWorkout.swift; sourceTree = "<group>"; };
 		FF7F01CD228E4F1A001ABDAE /* ExerciseContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseContainerView.swift; sourceTree = "<group>"; };
 		FF8E0979234A33550019F852 /* ExerciseCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExerciseCardView.xib; sourceTree = "<group>"; };
 		FF8E097B234A342F0019F852 /* ExerciseCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseCardView.swift; sourceTree = "<group>"; };
@@ -98,6 +102,7 @@
 				FFC13C50227166D400F396F1 /* Exercise VC */,
 				FFC13C542275468B00F396F1 /* Running Workout VC */,
 				FF04FBEC226BFAA50061AD07 /* Core data files */,
+				FF6B01D02408B52900704C7C /* SampleWorkouts */,
 				FF04FBEB226BFA8B0061AD07 /* Supporting files */,
 				FF04FBBE226AB8A70061AD07 /* Info.plist */,
 			);
@@ -132,6 +137,15 @@
 				FF04FBF1226C1BBF0061AD07 /* WorkoutProgramTableViewCell.swift */,
 			);
 			path = "WorkoutProgram TVC";
+			sourceTree = "<group>";
+		};
+		FF6B01D02408B52900704C7C /* SampleWorkouts */ = {
+			isa = PBXGroup;
+			children = (
+				FF6B01CE2408AE5C00704C7C /* SampleWorkouts.json */,
+				FF6B01D12408B57200704C7C /* SampleWorkout.swift */,
+			);
+			path = SampleWorkouts;
 			sourceTree = "<group>";
 		};
 		FFC13C4B226FEB7900F396F1 /* Workout TVC */ = {
@@ -226,6 +240,7 @@
 				FF04FBBD226AB8A70061AD07 /* LaunchScreen.storyboard in Resources */,
 				FF04FBBA226AB8A70061AD07 /* Assets.xcassets in Resources */,
 				FF8E097A234A33550019F852 /* ExerciseCardView.xib in Resources */,
+				FF6B01CF2408AE5C00704C7C /* SampleWorkouts.json in Resources */,
 				FF04FBB5226AB8A50061AD07 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -254,6 +269,7 @@
 				FF8E097C234A342F0019F852 /* ExerciseCardView.swift in Sources */,
 				FFC13C4A226FEB7200F396F1 /* WorkoutTableViewCell.swift in Sources */,
 				FF7F01CE228E4F1A001ABDAE /* ExerciseContainerView.swift in Sources */,
+				FF6B01D22408B57200704C7C /* SampleWorkout.swift in Sources */,
 				FF04FBEA226BFA380061AD07 /* Exercise.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

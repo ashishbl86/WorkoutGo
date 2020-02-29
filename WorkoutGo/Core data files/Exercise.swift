@@ -34,6 +34,7 @@ class Exercise: NSManagedObject {
         let newExercise = Exercise(context: AppDelegate.persistentContainer.viewContext)
         newExercise.name = name
         newExercise.duration = Int32(duration)
+        newExercise.rowNum = Int32(rowNum)
         newExercise.workout = try Workout.getWorkout(forProgram: programName, withName: workoutName)
     }
     

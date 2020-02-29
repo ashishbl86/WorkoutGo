@@ -14,6 +14,7 @@ class ExerciseCardView: UIView {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var durationLabel: UILabel!
     @IBOutlet weak var progressView: UIProgressView!
+    @IBOutlet weak var nextExerciseLabel: UILabel!
     
     static func loadViewFromXib() -> ExerciseCardView {
         let bundle = Bundle(for: self)

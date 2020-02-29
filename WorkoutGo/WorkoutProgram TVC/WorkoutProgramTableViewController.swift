@@ -101,7 +101,7 @@ class WorkoutProgramTableViewController: UITableViewController, WorkoutProgramTa
         if segue.identifier == "Open Workout Program" {
             if let workoutTVC = segue.destination as? WorkoutTableViewController, let selectedCell = sender as? WorkoutProgramTableViewCell {
                 assert(selectedCell.programNameTextField.text != nil, "Workout program is nil")
-                workoutTVC.workoutProgram = selectedCell.programNameTextField.text!
+                workoutTVC.workoutProgramName = selectedCell.programNameTextField.text!
             }
         }
     }

@@ -8,16 +8,21 @@
 
 import UIKit
 
-// TODO: Move to where used OR create separate file
+// FIXME: Move to where used OR create separate file
 func Globalfunc_durationFormatter(seconds: Int) -> String {
     let secondsComponent = seconds % 60
     let minutes = seconds / 60
+    let minutesComponent = minutes % 60
+    let hours = minutes / 60
     
     var formattedTimeDuration = ""
-    if minutes < 10 {
+    if hours > 0 {
+        formattedTimeDuration.append("\(hours):")
+    }
+    if minutesComponent < 10 {
         formattedTimeDuration.append("0")
     }
-    formattedTimeDuration.append("\(minutes):")
+    formattedTimeDuration.append("\(minutesComponent):")
     
     if secondsComponent < 10 {
         formattedTimeDuration.append("0")

@@ -21,7 +21,7 @@ class WorkoutTableViewController: UITableViewController, Add_Edit_WorkoutExercis
         return (answer: true, errorMessage: "")
     }
 
-    var workoutProgram = "Workouts"
+    var workoutProgramName = "Workouts"
     private var workouts = [String]()
     {
         didSet {
@@ -52,12 +52,27 @@ class WorkoutTableViewController: UITableViewController, Add_Edit_WorkoutExercis
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = true
-        title = workoutProgram
+        title = workoutProgramName
         navigationItem.rightBarButtonItems?.append(self.editButtonItem)
-        createWorkoutProgramIfNotAvailable(withName: workoutProgram)
-        workouts = try! Workout.getAllWorkoutNames(forWorkoutProgram: workoutProgram)
+        createWorkoutProgramIfNotAvailable(withName: workoutProgramName)
+        addSampleWorkouts(toWorkoutProgram: workoutProgramName)
+        workouts = try! Workout.getAllWorkoutNames(forWorkoutProgram: workoutProgramName)
         if workouts.isEmpty {
             displayTableBackgroundForNoData()
+        }
+    }
+    
+    private func addSampleWorkouts(toWorkoutProgram programName: String) {
+        guard let sampleWorkouts = SampleWorkout.loadFrom(jsonFile: "SampleWorkouts.json")
+            else {
+                return
+            }
+        for (workoutIndex, workout) in sampleWorkouts.enumerated() {
+            try? Workout.addWorkout(forProgram: programName, withName: workout.name, rowNum: workoutIndex)
+            
+            for (exerciseIndex, exercise) in workout.exercises.enumerated() {
+                try? Exercise.addExercise(forWorkoutProgram: programName, forWorkout: workout.name, withName: exercise.name, withDuration: exercise.duration, rowNum: exerciseIndex)
+            }
         }
     }
     
@@ -110,7 +125,7 @@ class WorkoutTableViewController: UITableViewController, Add_Edit_WorkoutExercis
     private func addWorkout(_ name: String) {
         workouts.append(name)
         let indexOfNewWorkout = workouts.firstIndex(of: name)
-        try! Workout.addWorkout(forProgram: workoutProgram, withName: name, rowNum: indexOfNewWorkout!)
+        try! Workout.addWorkout(forProgram: workoutProgramName, withName: name, rowNum: indexOfNewWorkout!)
         tableView.insertRows(at: [IndexPath(row: indexOfNewWorkout!, section: 0)], with: .automatic)
     }
     
@@ -138,7 +153,7 @@ class WorkoutTableViewController: UITableViewController, Add_Edit_WorkoutExercis
     override func setEditing(_ editing: Bool, animated: Bool) {
         if editing == false, isEditing == true //This means that editing went from true to false i.e. editing ended
         {
-            try! Workout.synchronize(withData: workouts, forProgram: workoutProgram)
+            try! Workout.synchronize(withData: workouts, forProgram: workoutProgramName)
         }
         super.setEditing(editing, animated: animated)
         
@@ -168,7 +183,7 @@ class WorkoutTableViewController: UITableViewController, Add_Edit_WorkoutExercis
         let oldName = workouts[indexPath.row]
         workouts[indexPath.row] = newName
         tableView.reloadRows(at: [indexPath], with: .automatic)
-        try! Workout.updateWorkoutName(forProgram: workoutProgram, from: oldName, to: newName)
+        try! Workout.updateWorkoutName(forProgram: workoutProgramName, from: oldName, to: newName)
     }
     
     // MARK: - Navigation
@@ -176,7 +191,7 @@ class WorkoutTableViewController: UITableViewController, Add_Edit_WorkoutExercis
         switch segue.identifier {
         case "Open Workout":
             if let exerciseVC = segue.destination as? ExerciseViewController, let selectedCell = sender as? WorkoutTableViewCell {
-                exerciseVC.workoutProgram = workoutProgram
+                exerciseVC.workoutProgram = workoutProgramName
                 exerciseVC.workout = selectedCell.name
             }
             

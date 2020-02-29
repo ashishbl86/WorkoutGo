@@ -1,0 +1,79 @@
+[
+  {
+    "Workout": "Cardio",
+    "Exercises":[
+      {
+        "Exercise":"Jogging",
+        "Duration":300
+      },
+      {
+        "Exercise":"Runninng",
+        "Duration":900
+      },
+      {
+        "Exercise":"Rest",
+        "Duration":300
+      },
+      {
+        "Exercise":"Cycling",
+        "Duration":900
+      },
+      {
+        "Exercise":"Rest",
+        "Duration":300
+      },
+      {
+        "Exercise":"Cross-trainer",
+        "Duration":900
+      },
+      {
+        "Exercise":"Cooldown",
+        "Duration":300
+      }
+    ]
+  },
+  {
+    "Workout": "Biceps",
+    "Exercises": [
+      {
+        "Exercise":"Stretching",
+        "Duration":300
+      },
+      {"Exercise":"Incline DB Curl",
+        "Duration":120
+      },
+      {
+        "Exercise":"Rest",
+        "Duration":60
+      },
+      {
+        "Exercise":"DB Hammer Curl",
+        "Duration":120
+      },
+      {
+        "Exercise":"Rest",
+        "Duration":60
+      },
+      {
+        "Exercise":"Barbell Curl",
+        "Duration":120
+      },
+      {
+        "Exercise":"Rest",
+        "Duration":60
+      },
+      {
+        "Exercise":"Chin ups",
+        "Duration":120
+      },
+      {
+        "Exercise":"Cooldown",
+        "Duration":180
+      }
+    ]
+  },
+  {
+    "Workout": "Triceps & Back",
+    "Exercises":[]
+  }
+]

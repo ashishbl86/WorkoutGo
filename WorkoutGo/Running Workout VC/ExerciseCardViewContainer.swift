@@ -25,10 +25,19 @@ class ExerciseCardViewContainer: UIView {
         exerciseCard.durationLabel.text = Globalfunc_durationFormatter(seconds: durationInSecs)
     }
     
-    func prepareCard(withName exerciseName: String, withDurationInSecs durationInSecs: Int) {
+    func prepareCard(withName exerciseName: String, withDurationInSecs durationInSecs: Int, nextExercise: String?) {
         exerciseCard.titleLabel.text = exerciseName
         updateDuration(withDurationInSecs: durationInSecs)
         initializeProgressViewAnimator(withDuration: durationInSecs)
+        exerciseCard.nextExerciseLabel.text = generateNextExerciseLabelText(for: nextExercise)
+    }
+    
+    private func generateNextExerciseLabelText(for value: String?) -> String? {
+        if let value = value {
+            return "Next: \(value)"
+        }
+        
+        return nil
     }
     
     func setBackgroundColor(_ backgroundColor: UIColor) {

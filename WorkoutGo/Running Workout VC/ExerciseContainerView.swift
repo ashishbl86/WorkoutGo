@@ -18,7 +18,7 @@ class ExerciseContainerView: UIView {
         bounds.width - foregroundExerciseView.frame.width
     }
     
-    func initialize(withExerciseName exerciseName: String, withDurationInSecs duration: Int) {
+    func initialize(withExerciseName exerciseName: String, withDurationInSecs duration: Int, nextExerciseName: String?) {
         let exerciseViews = subviews.compactMap { view in
             view as? ExerciseCardViewContainer
         }
@@ -27,7 +27,7 @@ class ExerciseContainerView: UIView {
         foregroundExerciseView = exerciseViews[0]
         backgroundExerciseView = exerciseViews[1]
         
-        foregroundExerciseView.prepareCard(withName: exerciseName, withDurationInSecs: duration)
+        foregroundExerciseView.prepareCard(withName: exerciseName, withDurationInSecs: duration, nextExercise: nextExerciseName)
         
         let exerciseCardBackgroundColor = UIColor(patternImage: UIImage(named: "WhitePolygon")!)
         foregroundExerciseView.setBackgroundColor(exerciseCardBackgroundColor)
@@ -44,8 +44,8 @@ class ExerciseContainerView: UIView {
         view.layer.shadowOpacity = 0.4
     }
     
-    func transitionExerciseView(forOperation operation: RunningWorkoutViewController.ExerciseOperation, withNewExerciseName exerciseName: String, withDuration duration: Int) {
-        backgroundExerciseView.prepareCard(withName: exerciseName, withDurationInSecs: duration)
+    func transitionExerciseView(forOperation operation: RunningWorkoutViewController.ExerciseOperation, withNewExerciseName exerciseName: String, withDuration duration: Int, nextExerciseName: String?) {
+        backgroundExerciseView.prepareCard(withName: exerciseName, withDurationInSecs: duration, nextExercise: nextExerciseName)
         foregroundExerciseView.stopProgressViewAnimator()
         
         var targetLocationOfCurrent = CGPoint.zero

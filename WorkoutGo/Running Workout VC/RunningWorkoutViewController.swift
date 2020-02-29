@@ -104,7 +104,7 @@ class RunningWorkoutViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(patternImage: UIImage(named: "BlackPolygon")!)
-        exercisesContainerView.initialize(withExerciseName: currentExerciseName, withDurationInSecs: currentExerciseDuration)
+        exercisesContainerView.initialize(withExerciseName: currentExerciseName, withDurationInSecs: currentExerciseDuration, nextExerciseName: getNextExerciseName())
         configureButtonLabels()
         populateTotalExerciseTime()
         updateButtonStates()
@@ -142,9 +142,9 @@ class RunningWorkoutViewController: UIViewController {
         fastForwardButton.imageEdgeInsets = imageEdgeInset
     }
     
-    private func populateTotalExerciseTime() {
-        exerciseInfoList.forEach { exerciseInfo in
-            totalExerciseDurationInSecs += exerciseInfo.duration
+    private func populateTotalExerciseTime() {        
+        for index in currentExerciseInfoIndex ..< exerciseInfoList.count {
+            totalExerciseDurationInSecs += exerciseInfoList[index].duration
         }
         totalTimeRemainingLabel.text = Globalfunc_durationFormatter(seconds: totalExerciseDurationInSecs)
     }
@@ -212,10 +212,20 @@ class RunningWorkoutViewController: UIViewController {
         case .jumpToNext:
             exerciseInfoList.formIndex(after: &currentExerciseInfoIndex)
         }
-        exercisesContainerView.transitionExerciseView(forOperation: operation, withNewExerciseName: currentExerciseName, withDuration: currentExerciseDuration)
+        
+        exercisesContainerView.transitionExerciseView(forOperation: operation, withNewExerciseName: currentExerciseName, withDuration: currentExerciseDuration, nextExerciseName: getNextExerciseName())
         if exerciseStateAtStartOfOperation == .running {
             toggleExercise(withSound: false)
         }
+    }
+    
+    private func getNextExerciseName() -> String? {
+        if currentExerciseInfoIndex == exerciseInfoList.lastIndex {
+            return nil
+        }
+        
+        let nextExerciseIndex = exerciseInfoList.index(after: currentExerciseInfoIndex)
+        return exerciseInfoList[nextExerciseIndex].name
     }
     
     fileprivate func playNextPreviousSound() {

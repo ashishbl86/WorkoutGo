@@ -18,7 +18,7 @@ class StartWorkoutTransitionAnimator: NSObject, UIViewControllerAnimatedTransiti
         self.completionTask = completionTask
     }
     
-    private let duration: TimeInterval = 5.0//0.6
+    private let duration: TimeInterval = 0.6//5.0
     private let transitionViewOverlapPercentage = 20.0
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {

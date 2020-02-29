@@ -20,16 +20,16 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Wgg-Qb-2Ze">
-                    <rect key="frame" x="20" y="271" width="419" height="2"/>
+                    <rect key="frame" x="20" y="243" width="419" height="2"/>
                 </progressView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gKn-zf-dKw">
-                    <rect key="frame" x="229.5" y="306" width="0.0" height="0.0"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Next: Exercise" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gKn-zf-dKw">
+                    <rect key="frame" x="181" y="278" width="97.5" height="18"/>
                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Exercise Duration" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MUg-gx-rmH">
-                    <rect key="frame" x="103" y="69" width="253.5" height="194"/>
+                    <rect key="frame" x="103" y="69" width="253.5" height="166"/>
                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -40,7 +40,7 @@
                 <constraint firstItem="MUg-gx-rmH" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="5Qj-Uk-v0E"/>
                 <constraint firstItem="gKn-zf-dKw" firstAttribute="top" secondItem="Wgg-Qb-2Ze" secondAttribute="bottom" constant="33" id="6qN-Uu-tYV"/>
                 <constraint firstItem="EUb-3R-BS8" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="8ZU-8E-yWE"/>
-                <constraint firstAttribute="bottom" secondItem="gKn-zf-dKw" secondAttribute="bottom" constant="10" id="HXT-Fu-s9R"/>
+                <constraint firstAttribute="bottom" secondItem="gKn-zf-dKw" secondAttribute="bottom" constant="20" symbolic="YES" id="HXT-Fu-s9R"/>
                 <constraint firstItem="gKn-zf-dKw" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="JYx-Yr-lb2"/>
                 <constraint firstItem="MUg-gx-rmH" firstAttribute="top" secondItem="EUb-3R-BS8" secondAttribute="bottom" constant="8" symbolic="YES" id="LbS-2I-O9U"/>
                 <constraint firstItem="Wgg-Qb-2Ze" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" symbolic="YES" id="gTi-ev-dWn"/>
@@ -52,6 +52,7 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="durationLabel" destination="MUg-gx-rmH" id="ESY-iB-UTk"/>
+                <outlet property="nextExerciseLabel" destination="gKn-zf-dKw" id="EKg-ho-5De"/>
                 <outlet property="progressView" destination="Wgg-Qb-2Ze" id="uIg-pX-F7h"/>
                 <outlet property="titleLabel" destination="EUb-3R-BS8" id="bLJ-rJ-n9u"/>
             </connections>
