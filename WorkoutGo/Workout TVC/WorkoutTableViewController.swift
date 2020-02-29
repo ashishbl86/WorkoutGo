@@ -20,6 +20,40 @@ class WorkoutTableViewController: UITableViewController, Add_Edit_WorkoutExercis
         
         return (answer: true, errorMessage: "")
     }
+    
+    lazy var viewForEmptyTable: UIView = {
+        let emptyTableLabel = UILabel()
+        emptyTableLabel.translatesAutoresizingMaskIntoConstraints = false
+        emptyTableLabel.numberOfLines = 0
+        emptyTableLabel.text = "No Workouts"
+        emptyTableLabel.textColor = .systemGray
+        emptyTableLabel.font = UIFont.boldSystemFont(ofSize: 34) //UIFont.preferredFont(forTextStyle: .largeTitle)
+        emptyTableLabel.textAlignment = .center
+        
+        let emptyTableLabel2 = UILabel()
+        emptyTableLabel2.translatesAutoresizingMaskIntoConstraints = false
+        emptyTableLabel2.numberOfLines = 0
+        emptyTableLabel2.text = "Start by adding Workouts"
+        emptyTableLabel2.textColor = .systemGray
+        emptyTableLabel2.font = UIFont.preferredFont(forTextStyle: .body)
+        emptyTableLabel2.textAlignment = .center
+        
+        let labelsView = UIStackView(arrangedSubviews: [emptyTableLabel, emptyTableLabel2])
+        labelsView.setCustomSpacing(5, after: emptyTableLabel)
+        labelsView.translatesAutoresizingMaskIntoConstraints = false
+        labelsView.axis = .vertical
+        labelsView.alignment = .center
+        labelsView.distribution = .fill
+        
+        let containerView = UIView()
+        containerView.addSubview(labelsView)
+        NSLayoutConstraint.activate([
+            labelsView.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
+            labelsView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor)
+        ])
+        
+        return containerView
+    }()
 
     var workoutProgramName = "Workouts"
     private var workouts = [String]()
@@ -55,7 +89,7 @@ class WorkoutTableViewController: UITableViewController, Add_Edit_WorkoutExercis
         title = workoutProgramName
         navigationItem.rightBarButtonItems?.append(self.editButtonItem)
         createWorkoutProgramIfNotAvailable(withName: workoutProgramName)
-        addSampleWorkouts(toWorkoutProgram: workoutProgramName)
+        //addSampleWorkouts(toWorkoutProgram: workoutProgramName)
         workouts = try! Workout.getAllWorkoutNames(forWorkoutProgram: workoutProgramName)
         if workouts.isEmpty {
             displayTableBackgroundForNoData()
@@ -84,17 +118,8 @@ class WorkoutTableViewController: UITableViewController, Add_Edit_WorkoutExercis
     }
     
     private func displayTableBackgroundForNoData() {
-            tableView.backgroundView = {
-                let emptyTableLabel = UILabel()
-                emptyTableLabel.numberOfLines = 0
-                emptyTableLabel.text = "Add workouts to continue"
-                emptyTableLabel.textColor = .systemGray
-                emptyTableLabel.font = UIFont.preferredFont(forTextStyle: .title3)
-                emptyTableLabel.textAlignment = .center
-                return emptyTableLabel
-            }()
-            
-            tableView.separatorStyle = .none
+        tableView.backgroundView = viewForEmptyTable
+        tableView.separatorStyle = .none
     }
     
     private func removeTableBackground() {
