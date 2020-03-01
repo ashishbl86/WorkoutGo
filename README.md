@@ -2,14 +2,13 @@
 WorkoutGo is a exercise timer app for iOS. With this you can create highly customized workout routines with timed exercises.
 
 ## Screenshots
-<p align="left">
-<img src="./ScreenCaptures/NoWorkouts.png" width="33%" />
-<img src="./ScreenCaptures/WorkoutList.png" width="33%" />
-<img src="./ScreenCaptures/AddExercise.png" width="33%" />
-<img src="./ScreenCaptures/ExerciseList.png" width="33%" />
-<img src="./ScreenCaptures/Running_Play.png" width="33%" />
-<img src="./ScreenCaptures/Running_Pause.png" width="33%" />
-</p>
+Workouts (Empty table view)|Workouts table view|Adding Exercise
+---|---|---
+![No Workouts](./ScreenCaptures/NoWorkouts.png)|![Workouts table](./ScreenCaptures/WorkoutList.png)|![Adding Exercise](./ScreenCaptures/AddExercise.png)
+
+Exercise table view|Exercise (Paused)|Exercise (Playing)
+---|---|---
+![No Workouts](./ScreenCaptures/ExerciseList.png)|![Workouts table](./ScreenCaptures/Running_Play.png)|![Adding Exercise](./ScreenCaptures/Running_Pause.png)
 
 #### GIFs
 ###### NOTE: GIFs are large in size, so it may take a little while for them to load
