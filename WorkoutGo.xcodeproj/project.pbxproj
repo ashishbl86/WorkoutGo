@@ -53,7 +53,6 @@
 		FF6B01DF240BEB1F00704C7C /* Transition_SlowMotion.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Transition_SlowMotion.gif; sourceTree = "<group>"; };
 		FF6B01E0240BEB1F00704C7C /* WorkoutList.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WorkoutList.png; sourceTree = "<group>"; };
 		FF6B01E1240BEB1F00704C7C /* ExerciseList.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ExerciseList.png; sourceTree = "<group>"; };
-		FF6B01E2240BEB1F00704C7C /* AddWorkout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AddWorkout.png; sourceTree = "<group>"; };
 		FF6B01E3240BEB1F00704C7C /* Running_Play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Running_Play.png; sourceTree = "<group>"; };
 		FF6B01E4240BEB1F00704C7C /* Running_Pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Running_Pause.png; sourceTree = "<group>"; };
 		FF6B01E5240BEB1F00704C7C /* ExerciseStart_Operations.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ExerciseStart_Operations.gif; sourceTree = "<group>"; };
@@ -163,7 +162,6 @@
 			isa = PBXGroup;
 			children = (
 				FF6B01DE240BEB1F00704C7C /* NoWorkouts.png */,
-				FF6B01E2240BEB1F00704C7C /* AddWorkout.png */,
 				FF6B01E0240BEB1F00704C7C /* WorkoutList.png */,
 				FF6B01E7240BEB1F00704C7C /* AddExercise.png */,
 				FF6B01E1240BEB1F00704C7C /* ExerciseList.png */,
