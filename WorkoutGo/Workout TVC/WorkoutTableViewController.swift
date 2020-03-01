@@ -89,7 +89,7 @@ class WorkoutTableViewController: UITableViewController, Add_Edit_WorkoutExercis
         title = workoutProgramName
         navigationItem.rightBarButtonItems?.append(self.editButtonItem)
         createWorkoutProgramIfNotAvailable(withName: workoutProgramName)
-        //addSampleWorkouts(toWorkoutProgram: workoutProgramName)
+        addSampleWorkouts(toWorkoutProgram: workoutProgramName)
         workouts = try! Workout.getAllWorkoutNames(forWorkoutProgram: workoutProgramName)
         if workouts.isEmpty {
             displayTableBackgroundForNoData()

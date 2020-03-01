@@ -49,6 +49,16 @@
 		FF27861623629AFD004F2B1D /* Add_Edit_WorkoutExercise_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Add_Edit_WorkoutExercise_ViewController.swift; sourceTree = "<group>"; };
 		FF6B01CE2408AE5C00704C7C /* SampleWorkouts.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SampleWorkouts.json; sourceTree = "<group>"; };
 		FF6B01D12408B57200704C7C /* SampleWorkout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleWorkout.swift; sourceTree = "<group>"; };
+		FF6B01DE240BEB1F00704C7C /* NoWorkouts.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NoWorkouts.png; sourceTree = "<group>"; };
+		FF6B01DF240BEB1F00704C7C /* Transition_SlowMotion.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Transition_SlowMotion.gif; sourceTree = "<group>"; };
+		FF6B01E0240BEB1F00704C7C /* WorkoutList.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WorkoutList.png; sourceTree = "<group>"; };
+		FF6B01E1240BEB1F00704C7C /* ExerciseList.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ExerciseList.png; sourceTree = "<group>"; };
+		FF6B01E2240BEB1F00704C7C /* AddWorkout.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AddWorkout.png; sourceTree = "<group>"; };
+		FF6B01E3240BEB1F00704C7C /* Running_Play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Running_Play.png; sourceTree = "<group>"; };
+		FF6B01E4240BEB1F00704C7C /* Running_Pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Running_Pause.png; sourceTree = "<group>"; };
+		FF6B01E5240BEB1F00704C7C /* ExerciseStart_Operations.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ExerciseStart_Operations.gif; sourceTree = "<group>"; };
+		FF6B01E6240BEB1F00704C7C /* SelectWorkouts_ChangeStartPoint.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = SelectWorkouts_ChangeStartPoint.gif; sourceTree = "<group>"; };
+		FF6B01E7240BEB1F00704C7C /* AddExercise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AddExercise.png; sourceTree = "<group>"; };
 		FF7F01CD228E4F1A001ABDAE /* ExerciseContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseContainerView.swift; sourceTree = "<group>"; };
 		FF8E0979234A33550019F852 /* ExerciseCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExerciseCardView.xib; sourceTree = "<group>"; };
 		FF8E097B234A342F0019F852 /* ExerciseCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseCardView.swift; sourceTree = "<group>"; };
@@ -78,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				FFA1D8E523F6919800DFCE03 /* README.md */,
+				FF6B01D3240BE9E600704C7C /* ScreenCaptures */,
 				FF04FBAE226AB8A50061AD07 /* WorkoutGo */,
 				FF04FBAD226AB8A50061AD07 /* Products */,
 			);
@@ -146,6 +157,23 @@
 				FF6B01D12408B57200704C7C /* SampleWorkout.swift */,
 			);
 			path = SampleWorkouts;
+			sourceTree = "<group>";
+		};
+		FF6B01D3240BE9E600704C7C /* ScreenCaptures */ = {
+			isa = PBXGroup;
+			children = (
+				FF6B01DE240BEB1F00704C7C /* NoWorkouts.png */,
+				FF6B01E2240BEB1F00704C7C /* AddWorkout.png */,
+				FF6B01E0240BEB1F00704C7C /* WorkoutList.png */,
+				FF6B01E7240BEB1F00704C7C /* AddExercise.png */,
+				FF6B01E1240BEB1F00704C7C /* ExerciseList.png */,
+				FF6B01E4240BEB1F00704C7C /* Running_Pause.png */,
+				FF6B01E3240BEB1F00704C7C /* Running_Play.png */,
+				FF6B01E6240BEB1F00704C7C /* SelectWorkouts_ChangeStartPoint.gif */,
+				FF6B01E5240BEB1F00704C7C /* ExerciseStart_Operations.gif */,
+				FF6B01DF240BEB1F00704C7C /* Transition_SlowMotion.gif */,
+			);
+			path = ScreenCaptures;
 			sourceTree = "<group>";
 		};
 		FFC13C4B226FEB7900F396F1 /* Workout TVC */ = {
